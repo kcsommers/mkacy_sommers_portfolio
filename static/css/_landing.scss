@@ -1,0 +1,30 @@
+#landing-section {
+  background-color: #222;
+  min-height: 100vh;
+  background-image: url(../images/mkacy_logo.png);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+
+  .center-wrapper {
+    min-height: 100vh;
+  }
+
+  #landing-intro {
+    text-align: center;
+
+    h1 {
+      letter-spacing: 0.15em;
+    }
+
+    h3 {
+      margin: 0.5em 0;
+      letter-spacing: 0.15em;
+    }
+
+    button {
+      @extend %button-styles;
+    }
+  }
+}

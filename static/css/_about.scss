@@ -1,0 +1,27 @@
+#about-section {
+  background-color: #f8f8f8;
+
+  #about-flex {
+    display: flex;
+
+    #about-photo, #bio {
+      flex: 1;
+    }
+
+    #about-photo {
+      img {
+        border: 30px solid #fff;
+      }
+    }
+
+    #bio {
+      text-align: center;
+      padding: 4em 0em;
+      h2, p {
+        padding: 0 40px;
+        line-height: 1.5em;
+      }
+    }
+
+  }
+}

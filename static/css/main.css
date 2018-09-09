@@ -1,3 +1,289 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Cabin, sans serif;
+}
 
+main, nav {
+  transition: filter 0.2s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto Condensed, sans serif;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.page-title {
+  padding: 2em 0 1em 0;
+  text-align: center;
+  color: #222;
+  letter-spacing: 0.25em;
+}
+
+.center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-lid {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: none;
+}
+
+#contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #landing-section #landing-intro button {
+  color: #a9c5e8;
+  border: 2px solid #a9c5e8;
+  font-size: 1.3em;
+  padding: 0.5em 2em;
+  outline: none;
+  background: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+#main-nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: #fff;
+  font-size: 1.1em;
+  z-index: 100;
+}
+#main-nav #nav-wrapper {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  padding: 0 4em;
+  transition: all 0.5s ease;
+}
+#main-nav #nav-wrapper #nav-left, #main-nav #nav-wrapper #nav-right {
+  display: flex;
+  align-items: center;
+}
+#main-nav #nav-wrapper #nav-left a {
+  border: 2px solid #fff;
+  padding: 0.2em 0.5em;
+}
+#main-nav #nav-wrapper #nav-menu {
+  display: flex;
+  align-items: center;
+}
+#main-nav #nav-wrapper #nav-menu a {
+  margin-left: 1.5em;
+}
+#main-nav #nav-wrapper #nav-menu i {
+  color: #a9c5e8;
+  font-size: 2.4em;
+}
+
+#landing-section {
+  background-color: #222;
+  min-height: 100vh;
+  background-image: url(../images/mkacy_logo.png);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+}
+#landing-section .center-wrapper {
+  min-height: 100vh;
+}
+#landing-section #landing-intro {
+  text-align: center;
+}
+#landing-section #landing-intro h1 {
+  letter-spacing: 0.15em;
+}
+#landing-section #landing-intro h3 {
+  margin: 0.5em 0;
+  letter-spacing: 0.15em;
+}
+#about-section {
+  background-color: #f8f8f8;
+}
+#about-section #about-flex {
+  display: flex;
+}
+#about-section #about-flex #about-photo, #about-section #about-flex #bio {
+  flex: 1;
+}
+#about-section #about-flex #about-photo img {
+  border: 30px solid #fff;
+}
+#about-section #about-flex #bio {
+  text-align: center;
+  padding: 4em 0em;
+}
+#about-section #about-flex #bio h2, #about-section #about-flex #bio p {
+  padding: 0 40px;
+  line-height: 1.5em;
+}
+
+#projects-section {
+  background: linear-gradient(to bottom left, #dedfe1, #fff);
+}
+#projects-section #projects-flex {
+  display: flex;
+}
+#projects-section #projects-flex #project-description-wrapper, #projects-section #projects-flex #project-photos {
+  flex: 1;
+  padding: 3em;
+}
+#projects-section #projects-flex #project-description-wrapper #project-description {
+  font-size: 1em;
+  padding: 1em 0;
+}
+#projects-section #projects-flex #project-description-wrapper #project-description span {
+  color: #a9c5e8;
+}
+#projects-section #projects-flex #project-description-wrapper #project-links {
+  border-bottom: 5px solid #ddeaf0;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows {
+  display: flex;
+  justify-content: space-between;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows a {
+  display: flex;
+  align-items: center;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows a span {
+  padding: 0 0.2em;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows a:hover {
+  color: #a9c5e8;
+}
+#projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets {
+  text-align: center;
+  color: #222;
+  font-size: 2em;
+}
+
+#skills-section {
+  background-color: #ddeaf0;
+}
+#skills-section #skills-flex {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: 0 auto;
+  justify-content: space-around;
+  padding: 1em 0 4em 0;
+}
+#skills-section #skills-flex .skill-icon {
+  flex-basis: 14%;
+  padding: 1em;
+}
+
+#contact-section #contact-intro {
+  background-color: #222;
+}
+#contact-section #contact-intro #contact-intro-wrapper {
+  color: #fff;
+  text-align: center;
+  width: 70%;
+  padding: 8em 0;
+  margin: 0 auto;
+}
+#contact-section #contact-intro #contact-intro-wrapper p {
+  padding: 1em 0;
+}
+#contact-form {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -500px;
+  padding: 2em 4em;
+  display: flex;
+  flex-direction: column;
+  background-color: #222;
+  color: #fff;
+  width: 500px;
+  overflow: scroll;
+  transition: all 0.5s ease;
+  z-index: 1000;
+}
+#contact-form #contact-info h4 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
+}
+#contact-form #contact-info h4 i {
+  font-size: 1.5em;
+}
+#contact-form #contact-info h4 span {
+  font-style: italic;
+}
+#contact-form #contact-form-wrapper label {
+  display: block;
+}
+#contact-form #contact-form-wrapper input, #contact-form #contact-form-wrapper textarea {
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 3px solid #fff;
+  width: 100%;
+  font-size: 1.3em;
+  color: #fff;
+  padding: 1em 0;
+}
+#contact-form #contact-form-wrapper textarea {
+  overflow: scroll;
+  resize: none;
+  height: 200px;
+}
+#main-footer {
+  background-color: #f8f8f8;
+  color: #222;
+}
+#main-footer #footer-wrapper {
+  height: 150px;
+}
+#main-footer #footer-wrapper a {
+  padding: 0 1em;
+}
+#main-footer #footer-wrapper i {
+  font-size: 2.4em;
+}
 
 /*# sourceMappingURL=main.css.map */

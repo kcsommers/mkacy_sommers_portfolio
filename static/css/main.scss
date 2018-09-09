@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Cabin, sans serif;
+}
+
+main, nav {
+  transition: filter 0.2s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto Condensed, sans serif;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.page-title {
+  padding: 2em 0 1em 0;
+  text-align: center;
+  color: #222;
+  letter-spacing: 0.25em;
+}
+
+.center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-lid {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: none;
+}
+
+%button-styles {
+  color: #a9c5e8;
+  border: 2px solid #a9c5e8;
+  font-size: 1.3em;
+  padding: 0.5em 2em;
+  outline: none;
+  background: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+@import "nav";
+@import "landing";
+@import "about";
+@import "projects";
+@import "skills";
+@import "contact";
+@import "footer";
