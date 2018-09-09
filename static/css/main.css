@@ -76,7 +76,40 @@ img {
   outline: none;
   background: none;
   border-radius: 2px;
+  transition: all 0.3s ease;
   cursor: pointer;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    top: 20px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes letter-space {
+  0% {
+    letter-spacing: 0;
+  }
+  100% {
+    letter-spacing: 0.15em;
+  }
+}
+.letter-space {
+  animation-name: letter-space;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 #main-nav {
@@ -128,6 +161,7 @@ img {
 }
 #landing-section #landing-intro {
   text-align: center;
+  position: relative;
 }
 #landing-section #landing-intro h1 {
   letter-spacing: 0.15em;
@@ -136,6 +170,10 @@ img {
   margin: 0.5em 0;
   letter-spacing: 0.15em;
 }
+#landing-section #landing-intro button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 #about-section {
   background-color: #f8f8f8;
 }
@@ -179,24 +217,29 @@ img {
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
-#projects-section #projects-flex #project-description-wrapper #project-arrows {
-  display: flex;
-  justify-content: space-between;
-}
-#projects-section #projects-flex #project-description-wrapper #project-arrows a {
-  display: flex;
-  align-items: center;
-}
-#projects-section #projects-flex #project-description-wrapper #project-arrows a span {
-  padding: 0 0.2em;
-}
-#projects-section #projects-flex #project-description-wrapper #project-arrows a:hover {
-  color: #a9c5e8;
-}
 #projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets {
   text-align: center;
   color: #222;
-  font-size: 2em;
+  font-size: 3em;
+}
+#projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets .bullet {
+  cursor: pointer;
+  margin: 0.2em 0.1em;
+}
+#projects-section #projects-nav {
+  display: flex;
+  justify-content: space-around;
+}
+#projects-section #projects-nav span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+#projects-section #projects-nav span span {
+  padding: 0 0.2em;
+}
+#projects-section #projects-nav a:hover {
+  color: #a9c5e8;
 }
 
 #skills-section {
@@ -228,6 +271,10 @@ img {
 #contact-section #contact-intro #contact-intro-wrapper p {
   padding: 1em 0;
 }
+#contact-section #contact-intro #contact-intro-wrapper button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 #contact-form {
   position: fixed;
   top: 0;

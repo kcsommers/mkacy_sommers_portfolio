@@ -2,9 +2,9 @@
   <section class="section" id="landing-section">
     <div class="page-wrapper">
         <div class="center-wrapper">
-          <div id="landing-intro">
-            <h1>M Kacy Sommers</h1>
-            <h3>Full Stack Web Developer</h3>
+          <div class="fade-in" id="landing-intro">
+            <h1 class="letter-space">M Kacy Sommers</h1>
+            <h3 class="letter-space">Full Stack Web Developer</h3>
             <button>See Projects</button>
           </div>
         </div>
@@ -34,33 +34,38 @@
         <h3>Projects</h3>
       </div>
       <div class="carousel" id="projects-carousel">
-        <div id="projects-flex">
+        <div class="carousel-wrapper" id="projects-flex">
           <div id="project-description-wrapper">
-            <h1>Bookkeeper</h1>
-            <p>HTML5, CSS3, JavaScript, JQuery, Node.js, Express.js, PostgreSQL, Sequelize</p>
-            <p id="project-description">Lorem ipsum dolor sit amet, no dicit scribentur has, in eam posse sonet    aeterno, no nihil civibus fabellas sit. Cum verear euismod ad. Postea vituperata ad vel, mei case ubique cu. Hinc accusam qui ne, ut eum invenire gubergren sadipscing. Vis eu dolor nemore postulant. Odio vituperata ne sit. <span>Read More</span></p>
+            <h1 id="project-title"></h1>
+            <p id="project-techs"></p>
+            <p id="project-description"></p>
             <div id="project-links">
-              <a href="#">Github</a>&nbsp;&nbsp;&nbsp;
-              <a href="#">Live Site</a>
-            </div>
-            <div id="project-arrows">
-              <a href="#"><i class="fa fa-chevron-left project-prev"></i><span>Prev Project</span></a>
-              <a href="#"><span>Next Project</span><i class="fa fa-chevron-right project-next"></i></a>
+              <a id="project-github">Github</a>&nbsp;&nbsp;&nbsp;
+              <a id="project-live">Live Site</a>
             </div>
           </div>
           <div id="project-photos">
             <div class="carousel" id="project-photos-carousel">
-              <div id="project-display">
+              <div class="carousel-wrapper" id="project-display">
                 <div id="project-display-top">
-                    <img src="../images/projects/bookkeeper.png" alt="bookkeeper">
+                    <img id="project-image" />
                 </div>
                 <div id="project-display-bottom">
-                  <div id="bullets">
-                    &bull; &bull; &bull; &bull; 
-                  </div>
+                  <div id="bullets"></div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div id="projects-nav">
+          <div class="projects-nav-item">
+            <span class="project-arrow" id="prev"><i class="fa fa-chevron-left"></i><span>Prev Project</span></span>
+          </div>
+            <div class="projects-nav-item">
+              <img src="" alt="">
+            </div>
+          <div class="projects-nav-item">
+            <span class="project-arrow" id="next"><span>Next Project</span><i class="fa fa-chevron-right"></i></span>
           </div>
         </div>
       </div>
@@ -69,15 +74,13 @@
 
   <section class="section" id="skills-section">
     <div class="page-wrapper">
-        <div class="page-title">
-            <h3>Technical Skills</h3>
-          </div>
+      <div class="page-title">
+        <h3>Technical Skills</h3>
+      </div>
       <div id="skills-flex">
-        <% skills.forEach(function(skill) { %>
-          <div class="skill-icon">
-              <img src="<%= skill %>" />
-          </div>
-        <% }); %>
+        <div class="skill-icon">
+            <img src="" />
+        </div>
       </div>
     </div>
   </section>
