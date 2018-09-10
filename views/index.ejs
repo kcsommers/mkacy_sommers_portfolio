@@ -1,5 +1,9 @@
+
 <main>
   <section class="section" id="landing-section">
+    <div class="center-wrapper" id="landing-bg">
+      <img src="../images/mkacy_logo.png" alt="kacy sommers logo" />
+    </div>
     <div class="page-wrapper">
         <div class="center-wrapper">
           <div class="fade-in" id="landing-intro">
@@ -20,8 +24,8 @@
         <div id="bio">
           <h2>Hi, I'm Kacy.</h2> 
           <p>
-              I'm a Seattle based developer who loves to create full stack, fully responsive web applications that focus strongly on user experience.
-              Lorem ipsum dolor sit amet, no dicit scribentur has, in eam posse sonet aeterno, no nihil civibus fabellas sit. Cum verear euismod ad. Postea vituperata ad vel, mei case ubique cu. Hinc accusam qui ne, ut eum invenire gubergren sadipscing. Vis eu dolor nemore postulant. Odio vituperata ne sit.
+            I'm a Seattle based developer who loves to create full stack, fully responsive web applications that focus strongly on user experience.
+            Lorem ipsum dolor sit amet, no dicit scribentur has, in eam posse sonet aeterno, no nihil civibus fabellas sit. Cum verear euismod ad. Postea vituperata ad vel, mei case ubique cu. Hinc accusam qui ne, ut eum invenire gubergren sadipscing. Vis eu dolor nemore postulant. Odio vituperata ne sit.
           </p>
         </div>
       </div>
@@ -40,8 +44,13 @@
             <p id="project-techs"></p>
             <p id="project-description"></p>
             <div id="project-links">
+              <a id="project-read-more">Read More</a>&nbsp;&nbsp;&nbsp;
               <a id="project-github">Github</a>&nbsp;&nbsp;&nbsp;
               <a id="project-live">Live Site</a>
+            </div>
+            <div id="project-arrows">
+              <span class="project-arrow" id="prev"><i class="fa fa-chevron-left"></i><span>Prev Project</span></span>
+              <span class="project-arrow" id="next"><span>Next Project</span><i class="fa fa-chevron-right"></i></span>
             </div>
           </div>
           <div id="project-photos">
@@ -57,17 +66,6 @@
             </div>
           </div>
         </div>
-        <div id="projects-nav">
-          <div class="projects-nav-item">
-            <span class="project-arrow" id="prev"><i class="fa fa-chevron-left"></i><span>Prev Project</span></span>
-          </div>
-            <div class="projects-nav-item">
-              <img src="" alt="">
-            </div>
-          <div class="projects-nav-item">
-            <span class="project-arrow" id="next"><span>Next Project</span><i class="fa fa-chevron-right"></i></span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -78,9 +76,11 @@
         <h3>Technical Skills</h3>
       </div>
       <div id="skills-flex">
-        <div class="skill-icon">
-            <img src="" />
-        </div>
+        <% skills.forEach((skill) => { %>
+          <div class="skill-icon">
+              <img src=<%= skill.src %> alt=<%= skill.name %> name=<%= skill.name %> />
+          </div>
+        <% }); %>
       </div>
     </div>
   </section>
@@ -89,9 +89,9 @@
     <div class="page-wrapper">
       <div id="contact-intro">
         <div id="contact-intro-wrapper">
-            <h2>Let's work together!</h2>
-            <p>I am always on the lookout for new projects, fresh challenges and kind folks to collaborate with. If you have an idea, an open position or just want to talk code, please get in touch.</p>
-            <button class="contact-link">Contact Kacy</button>
+          <h2>Let's work together!</h2>
+          <p>I am always on the lookout for new projects, fresh challenges and kind folks to collaborate with. If you have an idea, an open position or just want to talk code, please get in touch.</p>
+          <button class="contact-link">Contact Kacy</button>
         </div>
       </div>
     </div>

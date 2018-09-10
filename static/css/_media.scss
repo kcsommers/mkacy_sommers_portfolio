@@ -1,0 +1,145 @@
+@media screen and (max-width: 900px) {
+  #about-flex {
+    display: flex;
+    flex-direction: column-reverse;
+
+    #about-photo {
+      img {
+        width: 60%;
+        min-width: 300px;
+        margin: -2em auto 2em auto;
+      }
+    }
+
+    #bio {
+      h2, p {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  #projects-section {
+    #projects-flex {
+      flex-direction: column;
+
+      #project-description-wrapper {
+        padding: 2em;
+      }
+
+      #project-photos {
+        padding: 0 2em 2em 2em;
+      }
+    }
+  }
+
+  #project-page-section {
+    #project-page-wrapper {
+      #project-details {
+        padding: 8em 2em 3em 2em;
+        h1 {
+          font-size: 50px;
+        }
+      }
+
+      #project-images {
+        padding: 3em 2em;
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 750px) {
+  #main-nav {
+    #nav-wrapper {
+      padding: 0 2em;
+      #nav-menu {
+        .mobile-show {
+          display: block;
+        }
+    
+        .mobile-hide {
+          display: none;
+        }
+      }
+    }
+  }
+
+  #landing-section {
+    #landing-intro {
+      .letter-space {
+        animation-name: none;
+      }
+
+      h1 {
+        font-size: 50px;
+
+      }
+
+      h3 {
+        font-size: 30px;
+      }
+    }
+  }
+
+  #projects-section {
+    #projects-flex {
+      #project-description-wrapper {
+        h1 {
+          font-size: 50px;
+        }
+      }
+    }
+  }
+
+  #contact-section {
+    #contact-intro {
+      #contact-intro-wrapper {
+        width: 90%;
+      }
+    }
+  }
+
+  #resume-section {  
+    #resume-options {
+      justify-content: flex-start;
+      padding-top: 8em;
+      i {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #projects-section {
+    #projects-flex {
+      text-align: center;
+
+      #project-description-wrapper {
+        #project-techs {
+          font-size: 1em;
+        }
+
+        #project-arrows {
+          .project-arrow {
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+  }
+
+  #contact-section {
+    #contact-intro {
+      #contact-intro-wrapper {
+        width: 90%;
+
+        h2 {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}

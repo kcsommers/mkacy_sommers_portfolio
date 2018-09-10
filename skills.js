@@ -1,23 +1,80 @@
 const skills = [
-  '../images/icons/javascript.png',
-  '../images/icons/react.png',
-  '../images/icons/node.png',
-  '../images/icons/express.png',
-  '../images/icons/mongo.png',
-  '../images/icons/postgres.png',
-  '../images/icons/sequelize.png',
-  '../images/icons/python.png',
-  '../images/icons/django.png',
-  '../images/icons/html.png',
-  '../images/icons/css.png',
-  '../images/icons/bootstrap.png',
-  '../images/icons/materialize.png',
-  '../images/icons/sass.png',
-  '../images/icons/jquery.png',
-  '../images/icons/mocha.png',
-  '../images/icons/chai.png',
-  '../images/icons/git.png',
-  '../images/icons/github.png',
+  {
+    src: '../images/icons/javascript.png',
+    name: 'JavaScript'
+  },
+  {
+    src: '../images/icons/react.png',
+    name: 'React'
+  },
+  {
+    src: '../images/icons/node.png',
+    name: 'Node'
+  },
+  {
+    src: '../images/icons/express.png',
+    name: 'Express'
+  },
+  {
+    src: '../images/icons/mongo.png',
+    name: 'MongoDB'
+  },
+  {
+    src: '../images/icons/postgres.png',
+    name: 'PostgreSQL'
+  },
+  {
+    src: '../images/icons/sequelize.png',
+    name: 'Sequelize'
+  },
+  {
+    src: '../images/icons/python.png',
+    name: 'Python'
+  },
+  {
+    src: '../images/icons/django.png',
+    name: 'Django'
+  },
+  {
+    src: '../images/icons/html.png',
+    name: 'HTML5'
+  },
+  {
+    src: '../images/icons/css.png',
+    name: 'CSS3'
+  },
+  {
+    src: '../images/icons/materialize.png',
+    name: 'Materialize'
+  },
+  {
+    src: '../images/icons/bootstrap.png',
+    name: 'Bootstrap'
+  },
+  {
+    src: '../images/icons/sass.png',
+    name: 'Sass'
+  },
+  {
+    src: '../images/icons/jquery.png',
+    name: 'jQuery'
+  },
+  {
+    src: '../images/icons/mocha.png',
+    name: 'Mocha'
+  },
+  {
+    src: '../images/icons/chai.png',
+    name: 'Chai'
+  },
+  {
+    src: '../images/icons/git.png',
+    name: 'Git'
+  },
+  {
+    src: '../images/icons/github.png',
+    name: 'Github'
+  },
 ];
 
 module.exports = skills;

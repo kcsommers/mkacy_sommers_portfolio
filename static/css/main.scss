@@ -5,6 +5,10 @@
   font-family: Cabin, sans serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 main, nav {
   transition: filter 0.2s ease;
 }
@@ -43,6 +47,10 @@ p {
 img {
   width: 100%;
   display: block;
+}
+
+.section {
+  position: relative;
 }
 
 .page-title {
@@ -101,7 +109,7 @@ img {
 
 @keyframes letter-space {
   0% {
-    letter-spacing: 0;
+    letter-spacing: 0px;
   }
 
   100% {
@@ -123,4 +131,8 @@ img {
 @import "projects";
 @import "skills";
 @import "contact";
+@import "resume";
+@import "projectPage";
 @import "footer";
+@import "media";
+

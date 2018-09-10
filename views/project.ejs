@@ -1,0 +1,20 @@
+<section class="section" id="project-page-section">
+  <div class="page-wrapper" id="project-page-wrapper">
+    <section id="project-details">
+      <h1><%= project.name %></h1>
+      <div id="project-techs">
+          <% project.technologies.forEach((tech) => { %>
+            <span><%= tech %></span>
+          <% }); %>
+      </div>
+      <p><%= project.extraDescription %></p>
+    </section>
+    <section id="project-images">
+      <div id="project-images-wrapper">
+        <% project.images.forEach((src) => { %>
+          <img src=<%= src %> />
+        <% }); %>
+      </div>
+    </section>
+  </div>
+</section>

@@ -1,12 +1,20 @@
 #main-footer {
   background-color: #f8f8f8;
   color: #222;
+  position: relative;
+  z-index: 100;
 
   #footer-wrapper {
     height: 150px;
 
-    a {
+    a, span {
       padding: 0 1em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    a:hover, span:hover {
+      color: #a9c5e8;
     }
 
     i {

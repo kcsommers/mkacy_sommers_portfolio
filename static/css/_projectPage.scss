@@ -1,0 +1,41 @@
+#project-page-section {
+  background-color: #222;
+  color: #fff;
+  #project-page-wrapper {
+    #project-details {
+      text-align: center;
+      padding: 8em 5em 3em 5em;
+
+      #project-techs {
+        border-bottom: 5px solid #ddeaf0;
+        padding: 1em 0;
+        margin-bottom: 1em;
+
+        span {
+          font-style: italic;
+          padding: 0 1em;
+        }
+
+        span:not(:last-child) {
+          border-right: 1px solid #ddeaf0;
+        }
+      }
+
+      p {
+        line-height: 1.5em;
+      }
+    }
+
+    #project-images {
+      background-color: #ddeaf0;
+      padding: 3em 5em;
+
+      #project-images-wrapper {
+        img {
+          margin-bottom: 3em;
+        }
+      }
+    }
+
+  }
+}

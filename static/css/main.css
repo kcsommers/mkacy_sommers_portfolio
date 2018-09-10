@@ -5,6 +5,10 @@
   font-family: Cabin, sans serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 main, nav {
   transition: filter 0.2s ease;
 }
@@ -45,6 +49,10 @@ img {
   display: block;
 }
 
+.section {
+  position: relative;
+}
+
 .page-title {
   padding: 2em 0 1em 0;
   text-align: center;
@@ -68,7 +76,7 @@ img {
   display: none;
 }
 
-#contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #landing-section #landing-intro button {
+#contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #projects-section #projects-flex #project-description-wrapper #project-arrows .project-arrow, #landing-section #landing-intro button {
   color: #a9c5e8;
   border: 2px solid #a9c5e8;
   font-size: 1.3em;
@@ -99,7 +107,7 @@ img {
 
 @keyframes letter-space {
   0% {
-    letter-spacing: 0;
+    letter-spacing: 0px;
   }
   100% {
     letter-spacing: 0.15em;
@@ -139,10 +147,16 @@ img {
   display: flex;
   align-items: center;
 }
+#main-nav #nav-wrapper #nav-menu .mobile-show {
+  display: none;
+}
+#main-nav #nav-wrapper #nav-menu #nav-burger i {
+  font-size: 1.5em;
+}
 #main-nav #nav-wrapper #nav-menu a {
   margin-left: 1.5em;
 }
-#main-nav #nav-wrapper #nav-menu i {
+#main-nav #nav-wrapper #nav-menu #github-link i {
   color: #a9c5e8;
   font-size: 2.4em;
 }
@@ -150,11 +164,18 @@ img {
 #landing-section {
   background-color: #222;
   min-height: 100vh;
-  background-image: url(../images/mkacy_logo.png);
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: center center;
   color: #fff;
+}
+#landing-section #landing-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+#landing-section #landing-bg img {
+  width: 60%;
+  min-width: 650px;
 }
 #landing-section .center-wrapper {
   min-height: 100vh;
@@ -163,12 +184,9 @@ img {
   text-align: center;
   position: relative;
 }
-#landing-section #landing-intro h1 {
-  letter-spacing: 0.15em;
-}
 #landing-section #landing-intro h3 {
   margin: 0.5em 0;
-  letter-spacing: 0.15em;
+  padding-bottom: 1em;
 }
 #landing-section #landing-intro button:hover {
   background-color: rgba(255, 255, 255, 0.3);
@@ -217,6 +235,35 @@ img {
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
+#projects-section #projects-flex #project-description-wrapper #project-links #project-read-more {
+  color: #a9c5e8;
+}
+#projects-section #projects-flex #project-description-wrapper #project-links a:hover {
+  opacity: 0.5;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows {
+  display: flex;
+  justify-content: space-between;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows .project-arrow {
+  transition: all 0.2s ease;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows .project-arrow span {
+  padding: 0 0.2em;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows .project-arrow:hover {
+  background-color: #f8f8f8;
+}
+#projects-section #projects-flex #project-description-wrapper #project-arrows a:hover {
+  color: #a9c5e8;
+}
+#projects-section #projects-flex #project-photos #project-display #project-display-top img {
+  margin: 0 auto;
+}
 #projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets {
   text-align: center;
   color: #222;
@@ -225,21 +272,6 @@ img {
 #projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets .bullet {
   cursor: pointer;
   margin: 0.2em 0.1em;
-}
-#projects-section #projects-nav {
-  display: flex;
-  justify-content: space-around;
-}
-#projects-section #projects-nav span {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-#projects-section #projects-nav span span {
-  padding: 0 0.2em;
-}
-#projects-section #projects-nav a:hover {
-  color: #a9c5e8;
 }
 
 #skills-section {
@@ -256,6 +288,7 @@ img {
 #skills-section #skills-flex .skill-icon {
   flex-basis: 14%;
   padding: 1em;
+  min-width: 100px;
 }
 
 #contact-section #contact-intro {
@@ -319,18 +352,179 @@ img {
   resize: none;
   height: 200px;
 }
+#resume-section {
+  background: linear-gradient(to bottom left, #fff, #dedfe1);
+}
+#resume-section #resume-wrapper {
+  margin: 0 auto;
+  padding: 8em 0 3em 17.5%;
+}
+#resume-section #resume-wrapper #resume {
+  width: 75%;
+  margin: 0 auto;
+}
+#resume-section #resume-wrapper #resume img {
+  box-shadow: 2px 2px 20px #888;
+}
+#resume-section #resume-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  color: #fff;
+  background-color: #222;
+  width: 20%;
+}
+#resume-section #resume-options .resume-option {
+  padding: 1em 0;
+}
+#resume-section #resume-options i {
+  font-size: 2em;
+}
+
+#project-page-section {
+  background-color: #222;
+  color: #fff;
+}
+#project-page-section #project-page-wrapper #project-details {
+  text-align: center;
+  padding: 8em 5em 3em 5em;
+}
+#project-page-section #project-page-wrapper #project-details #project-techs {
+  border-bottom: 5px solid #ddeaf0;
+  padding: 1em 0;
+  margin-bottom: 1em;
+}
+#project-page-section #project-page-wrapper #project-details #project-techs span {
+  font-style: italic;
+  padding: 0 1em;
+}
+#project-page-section #project-page-wrapper #project-details #project-techs span:not(:last-child) {
+  border-right: 1px solid #ddeaf0;
+}
+#project-page-section #project-page-wrapper #project-details p {
+  line-height: 1.5em;
+}
+#project-page-section #project-page-wrapper #project-images {
+  background-color: #ddeaf0;
+  padding: 3em 5em;
+}
+#project-page-section #project-page-wrapper #project-images #project-images-wrapper img {
+  margin-bottom: 3em;
+}
+
 #main-footer {
   background-color: #f8f8f8;
   color: #222;
+  position: relative;
+  z-index: 100;
 }
 #main-footer #footer-wrapper {
   height: 150px;
 }
-#main-footer #footer-wrapper a {
+#main-footer #footer-wrapper a, #main-footer #footer-wrapper span {
   padding: 0 1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#main-footer #footer-wrapper a:hover, #main-footer #footer-wrapper span:hover {
+  color: #a9c5e8;
 }
 #main-footer #footer-wrapper i {
   font-size: 2.4em;
+}
+
+@media screen and (max-width: 900px) {
+  #about-flex {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  #about-flex #about-photo img {
+    width: 60%;
+    min-width: 300px;
+    margin: -2em auto 2em auto;
+  }
+  #about-flex #bio h2, #about-flex #bio p {
+    padding: 0 20px;
+  }
+
+  #projects-section #projects-flex {
+    flex-direction: column;
+  }
+  #projects-section #projects-flex #project-description-wrapper {
+    padding: 2em;
+  }
+  #projects-section #projects-flex #project-photos {
+    padding: 0 2em 2em 2em;
+  }
+
+  #project-page-section #project-page-wrapper #project-details {
+    padding: 8em 2em 3em 2em;
+  }
+  #project-page-section #project-page-wrapper #project-details h1 {
+    font-size: 50px;
+  }
+  #project-page-section #project-page-wrapper #project-images {
+    padding: 3em 2em;
+  }
+}
+@media screen and (max-width: 750px) {
+  #main-nav #nav-wrapper {
+    padding: 0 2em;
+  }
+  #main-nav #nav-wrapper #nav-menu .mobile-show {
+    display: block;
+  }
+  #main-nav #nav-wrapper #nav-menu .mobile-hide {
+    display: none;
+  }
+
+  #landing-section #landing-intro .letter-space {
+    animation-name: none;
+  }
+  #landing-section #landing-intro h1 {
+    font-size: 50px;
+  }
+  #landing-section #landing-intro h3 {
+    font-size: 30px;
+  }
+
+  #projects-section #projects-flex #project-description-wrapper h1 {
+    font-size: 50px;
+  }
+
+  #contact-section #contact-intro #contact-intro-wrapper {
+    width: 90%;
+  }
+
+  #resume-section #resume-options {
+    justify-content: flex-start;
+    padding-top: 8em;
+  }
+  #resume-section #resume-options i {
+    font-size: 1.5em;
+  }
+}
+@media screen and (max-width: 500px) {
+  #projects-section #projects-flex {
+    text-align: center;
+  }
+  #projects-section #projects-flex #project-description-wrapper #project-techs {
+    font-size: 1em;
+  }
+  #projects-section #projects-flex #project-description-wrapper #project-arrows .project-arrow {
+    font-size: 0.9em;
+  }
+
+  #contact-section #contact-intro #contact-intro-wrapper {
+    width: 90%;
+  }
+  #contact-section #contact-intro #contact-intro-wrapper h2 {
+    font-size: 40px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
