@@ -1,11 +1,19 @@
 #landing-section {
   background-color: #222;
   min-height: 100vh;
-  background-image: url(../images/mkacy_logo.png);
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: center center;
   color: #fff;
+
+  #landing-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+
+    img {
+      width: 60%;
+      min-width: 650px;
+    }
+  }
 
   .center-wrapper {
     min-height: 100vh;
@@ -13,18 +21,19 @@
 
   #landing-intro {
     text-align: center;
-
-    h1 {
-      letter-spacing: 0.15em;
-    }
+    position: relative;
 
     h3 {
       margin: 0.5em 0;
-      letter-spacing: 0.15em;
+      padding-bottom: 1em;
     }
 
     button {
       @extend %button-styles;
+    }
+
+    button:hover {
+      background-color: rgba(255,255,255,0.3);
     }
   }
 }

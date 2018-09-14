@@ -5,6 +5,10 @@
   font-family: Cabin, sans serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 main, nav {
   transition: filter 0.2s ease;
 }
@@ -45,6 +49,10 @@ img {
   display: block;
 }
 
+.section {
+  position: relative;
+}
+
 .page-title {
   padding: 2em 0 1em 0;
   text-align: center;
@@ -76,6 +84,7 @@ img {
   outline: none;
   background: none;
   border-radius: 2px;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -85,4 +94,9 @@ img {
 @import "projects";
 @import "skills";
 @import "contact";
+@import "resume";
+@import "projectPage";
 @import "footer";
+@import "media";
+@import "animations";
+

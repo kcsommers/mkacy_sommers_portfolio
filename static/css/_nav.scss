@@ -4,7 +4,7 @@
   top: 0;
   color: #fff;
   font-size: 1.1em;
-  z-index: 100;
+  z-index: 1000;
 
   #nav-wrapper {
     display: flex;
@@ -28,12 +28,25 @@
     #nav-menu {
       display: flex;
       align-items: center;
+
+      .mobile-show {
+        display: none;
+      }
+
+      #nav-burger {
+        i {
+          font-size: 1.5em;
+        }
+      }
+
       a {
         margin-left: 1.5em;
       }
-      i {
-        color: #a9c5e8;
-        font-size: 2.4em;
+      #github-link {
+        i {
+          color: #a9c5e8;
+          font-size: 2.4em;
+        }
       }
     }
   }

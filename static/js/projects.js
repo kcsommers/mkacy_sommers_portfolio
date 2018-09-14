@@ -1,4 +1,4 @@
-const projects = [
+export const projects = [
 	{
 		name: "Bookkeeper",
 		description: "Node application for finding or creating book clubs, organizing books into customized lists, and storing notes and quotes.",
@@ -48,5 +48,3 @@ const projects = [
 		}
 	}
 ];
-
-module.exports = projects;
