@@ -49,129 +49,186 @@ const projects = [
 	}
 ];
 
+// ******************************************* 
+// global variables
+// *******************************************
+var currentPage = window.location.href.split('http://localhost:3000')[1];
 
-$(document).ready(function() {
-  // ******************************************* 
-  // global variables
-  // *******************************************
-  var currentPage = window.location.href.split('http://localhost:3000')[1];
-  console.log(currentPage)
+// ******************************************* 
+// functions
+// *******************************************
 
-  // ******************************************* 
-  // project carousels
-  // *******************************************
-  // Globals
-  var projectIndex = 0;
-  var projectImageIndex = 0;
-  var projectImageInterval;
+const setNavHeight = function(page) {
+  const navbar = $('#nav-wrapper');
+  if($(window).scrollTop() > 0 || page === '/resume') {
+    navbar.css({height: '70px', backgroundColor: '#ddeaf0'});
+  }
+  else {
+    navbar.css({height: '100px', backgroundColor: 'rgba(0,0,0,0)'});
+  }
+};
 
-  // this function fills the project image carousel
-  const fillProjectImage = (project, i) => {
-    let container = $('#project-display-top');
-    container.children().first().remove();
-    let imgSrc = project.images[i];
-    container.append(`<img id="project-image" src=${imgSrc} alt=${project.name} />`)
-    .hide().fadeIn(500);
-  };
+const showContact = function() {
+  $('#contact-form').css({right: 0});
+  $('body').css({overflowY: 'hidden'});
+  $('.page-lid').css({display: 'block'});
+  $('nav').css({filter: 'blur(2px)'});
+  $('main').css({filter: 'blur(2px)'});
+  $('footer').css({filter: 'blur(2px)'});
+};
 
-  const startImageInterval = function(project, i) {
-    clearInterval(projectImageInterval);
-    projectImageInterval = setInterval(() => {
-      i = (i === project.images.length - 1) ? 0 : i + 1;
-      fillProjectImage(project, i);
-    }, 5000);
-  };
+const hideContact = function() {
+  $('#contact-form').css({right: '-500px'});
+  $('body').css({overflowY: 'initial'});
+  $('.page-lid').css({display: 'none'});
+  $('nav').css({filter: 'none'});
+  $('main').css({filter: 'none'});
+  $('footer').css({filter: 'none'});
+}
 
-  // This function loads the project carousel
-  const fillProject = function(i) {
-    let project = projects[i];
-    let projectDiv = $('#projects-section');
-    let title = projectDiv.find('#project-title'); 
-    let techs = projectDiv.find('#project-techs'); 
-    let desc = projectDiv.find('#project-description'); 
-    let github = projectDiv.find('#project-github');
-    let live = projectDiv.find('#project-live');
-    let bullets = projectDiv.find('#project-display-bottom #bullets');
-    let readMore = projectDiv.find('#project-read-more');
+// ******************************************* 
+// project carousels
+// *******************************************
+// Globals
+var projectIndex = 0;
+var projectImageIndex = 0;
+var projectImageInterval;
 
-    title.text(project.name);
-    techs.text('');
-    project.technologies.forEach((tech) => {
-      let techSpan = $(`<span>${tech}, </span>`);
-      techs.append(techSpan);
+// this function fills the project image carousel
+const fillProjectImage = (project, i) => {
+  let container = $('.project-display-top');
+  container.children().first().fadeOut(800);
+  let imgSrc = project.images[i];
+  let img = $(`<img class="project-image" src=${imgSrc} alt=${project.name} />`);
+  container.prepend(img)
+  .fadeIn(800);
+  // update active bullet
+  $('.bullet-active').removeClass('bullet-active');
+  $(`.bullet:eq(${i})`).addClass('bullet-active');
+};
+
+const startImageInterval = function(project, i) {
+  clearInterval(projectImageInterval);
+  projectImageInterval = setInterval(() => {
+    i = (i === project.images.length - 1) ? 0 : i + 1;
+    fillProjectImage(project, i);
+  }, 5000);
+};
+
+const createProjectSlide = function(i, slide) {
+  const project = projects[i];
+  let slideWrapper = $(`<div class="carousel-wrapper ${slide}" id="projects-flex"></div>`);
+  let descriptionWrapper = $(`<div id="project-description-wrapper"></div>`);
+
+  let title = $(`<h1 id="project-title">${project.name}</h1>`); 
+  let techs = $('<p id="project-techs"></p>'); 
+  let desc = $(`<p id="project-description">${project.description}</p>`);
+  let githubLink = $(`<a id="project-github" href=${project.github}>Github</a>`);
+  let liveLink = $(`<a id="project-live" href=${project.live}>Live Site</a>`);
+  let readMoreLink = $(`<a id="project-read-more" href="/project/${i}">Read More</a>`);
+  let links = $(`<div id="project-links"></div>`);
+  links.append(readMoreLink, liveLink, githubLink);
+  project.technologies.forEach((tech) => {
+    let techSpan = $(`<span>${tech}, </span>`);
+    techs.append(techSpan);
+  });
+  let arrows = $(`<div id="project-arrows"><span class="project-arrow" id="prev"><i class="fa fa-chevron-left"></i><span>Prev Project</span></span><span class="project-arrow" id="next"><span>Next Project</span><i class="fa fa-chevron-right"></i></span> </div>`);
+  descriptionWrapper.append(title, techs, desc, links, arrows);
+
+  let photos = $(`<div id="project-photos"></div>`);
+  let photosCarousel = $(`<div class="carousel" id="project-photos-carousel"></div></div>`);
+  let photosDisplay = $('<div class="carousel-wrapper" id="project-display">');
+  let displayTop = $('<div class="project-display-top"></div>');
+  let displayBottom = $('<div id="project-display-bottom"></div>');
+  let bulletsDiv = $('<div id="bullets"></div>');
+
+  // add bullet for each project image
+  // and attach click event listener
+  project.images.forEach((image, index) => {
+    let bulletSpan = $(`<span class="bullet">&bull;</span>`).data({index: index});
+    if(index === 0) bulletSpan.addClass('bullet-active');
+    bulletSpan.on('click', (e) => {
+      projectImageIndex = index;
+      fillProjectImage(project, bulletSpan.data('index'));
+      startImageInterval(project, projectImageIndex);
     });
-    desc.text(project.description);
-    github.attr('href', project.links.github);
-    live.attr('href', project.links.live);
-    bullets.text('');
+    bulletsDiv.append(bulletSpan);
+  });
 
-    // add bullet for each project image
-    // and attach click event listener
-    project.images.forEach((image, i) => {
-      let bulletSpan = $(`<span class="bullet">&bull;</span>`).data({index: i});
-      bulletSpan.on('click', (e) => {
-        projectImageIndex = i;
-        fillProjectImage(project, bulletSpan.data('index'));
-        startImageInterval(project, projectImageIndex);
-      });
-      bullets.append(bulletSpan);
-    });
-    readMore.attr('href', `/project/${i}`);
+  let img = $(`<img class="project-image" src=${project.image} alt=${project.name} />`);
+  displayTop.append(img);
+  displayBottom.append(bulletsDiv);
+  photosDisplay.append(displayTop, displayBottom);
+  photosCarousel.append(photosDisplay);
+  photos.append(photosCarousel);
+  
+  slideWrapper.append(descriptionWrapper, photos);
+  return slideWrapper;
+};
 
-    fillProjectImage(project, 0);
-    startImageInterval(project, projectImageIndex);
-  };
-  fillProject(projectIndex);
+const addSlide = function(i, slide) {
+  const project = projects[i];
+  let carousel = $('#projects-carousel');
+  carousel.append(createProjectSlide(i, slide));
+  startImageInterval(project, projectImageIndex);
+  
+  // set image display height once image loads
+  $('.project-image').on('load', function() {
+    $('.project-display-top').height($(this).height());
+  })
 
   ////// PROJECT NAVIGATION
-  $('.project-arrow').click((e) => {
+  $('.project-arrow').click(function(e) {
     if($(this).is('#prev')){
       projectIndex = (projectIndex === 0) ? projects.length - 1 : projectIndex - 1;
+      addSlide(projectIndex, 'next-slide');
+      let currentSlide = $('.current-slide');
+      let nextSlide = $('.next-slide');
+      currentSlide.addClass('hide-left')
+      .on('animationend', function(e) {
+        $(this).remove();
+      });
+      nextSlide.addClass('show-left')
+      .on('animationend', function(e) {
+        $(this).removeClass('show-left').removeClass('next-slide').addClass('current-slide');
+      });
     }
     else {
       projectIndex = (projectIndex === projects.length - 1) ? 0 : projectIndex + 1;
+      addSlide(projectIndex, 'next-slide');
+      let currentSlide = $('.current-slide');
+      let nextSlide = $('.next-slide');
+      currentSlide.addClass('hide-right')
+      .on('animationend', function(e) {
+        $(this).remove();
+      });
+      nextSlide.addClass('show-right')
+      .on('animationend', function(e) {
+        $(this).removeClass('show-right').removeClass('next-slide').addClass('current-slide');
+      });
     }
-    fillProject(projectIndex);
   });
   /////////
+};
 
-  // ******************************************* 
+const setElementHeights = function() {
+  let projImgDisplay = $('.project-display-top');
+  let projImgHeight = $('.project-image');
+  projImgDisplay.height(projImgHeight.height());
+};
 
-  // *******************************************
-
-  const setNavHeight = function(page) {
-    const navbar = $('#nav-wrapper');
-    if($(window).scrollTop() > 0 || page === '/resume') {
-      navbar.css({height: '70px', backgroundColor: '#ddeaf0'});
-    }
-    else {
-      navbar.css({height: '100px', backgroundColor: 'rgba(0,0,0,0)'});
-    }
-  };
-
-  const showContact = function() {
-    $('#contact-form').css({right: 0});
-    $('body').css({overflowY: 'hidden'});
-    $('.page-lid').css({display: 'block'});
-    $('nav').css({filter: 'blur(2px)'});
-    $('main').css({filter: 'blur(2px)'});
-    $('footer').css({filter: 'blur(2px)'});
-  };
-
-  const hideContact = function() {
-    $('#contact-form').css({right: '-500px'});
-    $('body').css({overflowY: 'initial'});
-    $('.page-lid').css({display: 'none'});
-    $('nav').css({filter: 'none'});
-    $('main').css({filter: 'none'});
-    $('footer').css({filter: 'none'});
-  }
+$(document).ready(function() {
+  addSlide(projectIndex, 'current-slide');
 
   // ******************************************* 
   // events
   // *******************************************
   $(window).scroll((e) => {
     setNavHeight(currentPage);
+  });
+
+  $(window).resize(function(){
+    setElementHeights();
   });
 
   $('.nav-link').click(function(e) {
@@ -191,6 +248,40 @@ $(document).ready(function() {
         about.scrollIntoView({behavior: 'smooth'});
       }
     }
+  });
+
+  let thumbnailActive;
+  $('.project-thumbnail-wrapper img').on('mouseover', function(e) {
+    thumbnailActive = $('.thumbnail-active');
+    thumbnailActive.removeClass('thumbnail-active');
+    $(this).addClass('thumbnail-active');
+  });
+
+  $('.project-thumbnail-wrapper img').on('mouseout', function(e) {
+    $(this).removeClass('thumbnail-active');
+    thumbnailActive.addClass('thumbnail-active');
+  });
+
+  $('.project-thumbnail-wrapper img').click(function(e) {
+    let i = $(this).attr('data-index');
+    addSlide(i, 'next-slide');
+    let hideClass = (i > projectIndex) ? 'hide-right' : 'hide-left';
+    let showClass = (i > projectIndex) ? 'show-right' : 'show-left';
+    let currentSlide = $('.current-slide');
+    let nextSlide = $('.next-slide');
+    currentSlide.addClass(hideClass)
+    .on('animationend', function(e) {
+      $(this).remove();
+    });
+    nextSlide.addClass(showClass)
+    .on('animationend', function(e) {
+      $(this).removeClass(showClass).removeClass('next-slide').addClass('current-slide');
+    });
+
+    projectIndex = i;
+    thumbnailActive.removeClass('thumbnail-active');
+    $(this).addClass('thumbnail-active');
+    thumbnailActive = $(this);
   });
 
   $('.contact-link').click(function(e) {

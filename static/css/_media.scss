@@ -19,6 +19,7 @@
   }
 
   #projects-section {
+    height: 950px;
     #projects-flex {
       flex-direction: column;
 
@@ -84,6 +85,7 @@
   }
 
   #projects-section {
+    height: 900px;
     #projects-flex {
       #project-description-wrapper {
         h1 {
@@ -114,6 +116,7 @@
 
 @media screen and (max-width: 500px) {
   #projects-section {
+    height: 750px;
     #projects-flex {
       text-align: center;
 

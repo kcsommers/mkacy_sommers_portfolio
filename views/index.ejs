@@ -31,41 +31,31 @@
       </div>
     </div>
   </section>
-
   <section class="section" id="projects-section">
     <div class="page-wrapper">
       <div class="page-title">
         <h3>Projects</h3>
       </div>
-      <div class="carousel" id="projects-carousel">
-        <div class="carousel-wrapper" id="projects-flex">
-          <div id="project-description-wrapper">
-            <h1 id="project-title"></h1>
-            <p id="project-techs"></p>
-            <p id="project-description"></p>
-            <div id="project-links">
-              <a id="project-read-more">Read More</a>&nbsp;&nbsp;&nbsp;
-              <a id="project-github">Github</a>&nbsp;&nbsp;&nbsp;
-              <a id="project-live">Live Site</a>
-            </div>
-            <div id="project-arrows">
-              <span class="project-arrow" id="prev"><i class="fa fa-chevron-left"></i><span>Prev Project</span></span>
-              <span class="project-arrow" id="next"><span>Next Project</span><i class="fa fa-chevron-right"></i></span>
-            </div>
+      <div id="projects-thumbnails">
+        <% projects.forEach(function(project, i) { %>
+          <div class="project-thumbnail-wrapper">
+            <% if (i === 0) { %>
+              <img class="thumbnail-active" data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
+            <% } else { %> 
+              <img data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
+            <% } %>
           </div>
-          <div id="project-photos">
-            <div class="carousel" id="project-photos-carousel">
-              <div class="carousel-wrapper" id="project-display">
-                <div id="project-display-top">
-                    <img id="project-image" />
-                </div>
-                <div id="project-display-bottom">
-                  <div id="bullets"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% }); %>
+      </div>
+      <div class="carousel" id="projects-carousel"></div>
+      <div id="project-arrows">
+        <span class="project-arrow" id="prev">
+          <i class="fa fa-chevron-left"></i><span>Prev Project</span>
+        </span>
+        <span class="project-arrow" id="next">
+          <span>Next Project</span>
+          <i class="fa fa-chevron-right"></i>
+        </span>
       </div>
     </div>
   </section>

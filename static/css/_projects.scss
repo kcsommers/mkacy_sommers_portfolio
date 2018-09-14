@@ -1,5 +1,62 @@
 #projects-section {
   background: linear-gradient(to bottom left, #dedfe1, #fff);
+  height: 750px;
+
+  #project-arrows {
+    display: flex;
+    justify-content: space-between;
+
+    .project-arrow {
+      @extend %button-styles;
+      transition: all 0.2s ease;
+      font-size: 1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      span {
+        padding: 0 0.2em;
+      }
+    }
+
+    .project-arrow:hover {
+      background-color: #f8f8f8;
+    }
+
+    a:hover {
+      color: #a9c5e8;
+    }
+  }
+
+  #projects-thumbnails {
+    display: flex;
+    padding: 2em 3em;
+
+    img {
+      flex: 1;
+      opacity: 0.4;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+
+    .thumbnail-active {
+      position: relative;
+      z-index: 100;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  .carousel {
+    position: relative;
+
+    .current-slide {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
   #projects-flex {
     display: flex;
     #project-description-wrapper, #project-photos {
@@ -30,39 +87,19 @@
           opacity: 0.5;
         }
       }
-
-      #project-arrows {
-        display: flex;
-        justify-content: space-between;
-    
-        .project-arrow {
-          @extend %button-styles;
-          transition: all 0.2s ease;
-          font-size: 1em;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-    
-          span {
-            padding: 0 0.2em;
-          }
-        }
-
-        .project-arrow:hover {
-          background-color: #f8f8f8;
-        }
-    
-        a:hover {
-          color: #a9c5e8;
-        }
-      }
     }
 
     #project-photos {
       #project-display {
-        #project-display-top {
-          img {
+        .project-display-top {
+          position: relative;
+          .project-image {
             margin: 0 auto;
+            box-shadow: 2px 2px 20px #888;
+            position: absolute;
+          }
+          .project-image:after {
+            margin: 100px;
           }
         }
         #project-display-bottom {
@@ -74,6 +111,11 @@
             .bullet {
               cursor: pointer;
               margin: 0.2em 0.1em;
+              transition: color 0.5s ease;
+            }
+
+            .bullet-active {
+              color: #a9c5e8;
             }
           }
         }

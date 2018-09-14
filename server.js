@@ -16,7 +16,7 @@ app.listen(port, () => {
 });
 
 app.get('/', function(req, res) {
-    res.render('index', {skills: skills});
+    res.render('index', {skills, projects});
 });
 
 app.get('/resume', function(req, res) {
