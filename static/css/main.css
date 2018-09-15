@@ -76,7 +76,7 @@ img {
   display: none;
 }
 
-#contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #projects-section #project-arrows .project-arrow, #landing-section #landing-intro button {
+#contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #projects-section .projects-flex .project-description-wrapper .project-links .project-github, #projects-section .projects-flex .project-description-wrapper .project-links .project-live, #landing-section #landing-intro button {
   color: #a9c5e8;
   border: 2px solid #a9c5e8;
   font-size: 1.3em;
@@ -182,11 +182,11 @@ img {
 
 #projects-section {
   background: linear-gradient(to bottom left, #dedfe1, #fff);
-  height: 750px;
 }
 #projects-section #project-arrows {
   display: flex;
-  justify-content: space-between;
+  z-index: 100;
+  position: relative;
 }
 #projects-section #project-arrows .project-arrow {
   transition: all 0.2s ease;
@@ -194,6 +194,7 @@ img {
   cursor: pointer;
   display: flex;
   align-items: center;
+  margin-left: 3em;
 }
 #projects-section #project-arrows .project-arrow span {
   padding: 0 0.2em;
@@ -228,54 +229,65 @@ img {
   top: 0;
   width: 100%;
 }
-#projects-section #projects-flex {
+#projects-section .projects-flex {
   display: flex;
 }
-#projects-section #projects-flex #project-description-wrapper, #projects-section #projects-flex #project-photos {
+#projects-section .projects-flex .project-description-wrapper, #projects-section .projects-flex .project-photos {
   flex: 1;
   padding: 3em;
 }
-#projects-section #projects-flex #project-description-wrapper #project-description {
+#projects-section .projects-flex .project-description-wrapper .project-description {
   font-size: 1em;
-  padding: 1em 0;
+  padding: 1em 0 0.5em 0;
 }
-#projects-section #projects-flex #project-description-wrapper #project-description span {
+#projects-section .projects-flex .project-description-wrapper .project-description span {
   color: #a9c5e8;
 }
-#projects-section #projects-flex #project-description-wrapper #project-links {
+#projects-section .projects-flex .project-description-wrapper .project-links {
   border-bottom: 5px solid #ddeaf0;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
   margin-bottom: 1em;
 }
-#projects-section #projects-flex #project-description-wrapper #project-links #project-read-more {
+#projects-section .projects-flex .project-description-wrapper .project-links .project-read-more {
   color: #a9c5e8;
+  display: block;
+  margin-bottom: 2em;
 }
-#projects-section #projects-flex #project-description-wrapper #project-links a:hover {
+#projects-section .projects-flex .project-description-wrapper .project-links .project-github, #projects-section .projects-flex .project-description-wrapper .project-links .project-live {
+  margin-right: 0.5em;
+}
+#projects-section .projects-flex .project-description-wrapper .project-links a:hover {
   opacity: 0.5;
 }
-#projects-section #projects-flex #project-photos #project-display .project-display-top {
+#projects-section .projects-flex .project-photos .project-display .project-display-top {
   position: relative;
 }
-#projects-section #projects-flex #project-photos #project-display .project-display-top .project-image {
+#projects-section .projects-flex .project-photos .project-display .project-display-top .project-image {
   margin: 0 auto;
   box-shadow: 2px 2px 20px #888;
   position: absolute;
 }
-#projects-section #projects-flex #project-photos #project-display .project-display-top .project-image:after {
+#projects-section .projects-flex .project-photos .project-display .project-display-top .project-image:after {
   margin: 100px;
 }
-#projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets {
+#projects-section .projects-flex .project-photos .project-display .project-display-bottom .bullets {
   text-align: center;
   color: #222;
   font-size: 3em;
 }
-#projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets .bullet {
+#projects-section .projects-flex .project-photos .project-display .project-display-bottom .bullets .bullet {
   cursor: pointer;
   margin: 0.2em 0.1em;
   transition: color 0.5s ease;
 }
-#projects-section #projects-flex #project-photos #project-display #project-display-bottom #bullets .bullet-active {
+#projects-section .projects-flex .project-photos .project-display .project-display-bottom .bullets .bullet-active {
   color: #a9c5e8;
+}
+
+#projects-section:after {
+  padding: 20%;
+  content: "";
+  display: block;
 }
 
 #skills-section {

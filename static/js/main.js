@@ -93,6 +93,7 @@ const hideContact = function() {
 var projectIndex = 0;
 var projectImageIndex = 0;
 var projectImageInterval;
+var thumbnailActive = $('.thumbnail-active');
 
 // this function fills the project image carousel
 const fillProjectImage = (project, i) => {
@@ -117,30 +118,29 @@ const startImageInterval = function(project, i) {
 
 const createProjectSlide = function(i, slide) {
   const project = projects[i];
-  let slideWrapper = $(`<div class="carousel-wrapper ${slide}" id="projects-flex"></div>`);
-  let descriptionWrapper = $(`<div id="project-description-wrapper"></div>`);
+  let slideWrapper = $(`<div class="carousel-wrapper ${slide} projects-flex"></div>`);
+  let descriptionWrapper = $(`<div class="project-description-wrapper"></div>`);
 
-  let title = $(`<h1 id="project-title">${project.name}</h1>`); 
-  let techs = $('<p id="project-techs"></p>'); 
-  let desc = $(`<p id="project-description">${project.description}</p>`);
-  let githubLink = $(`<a id="project-github" href=${project.github}>Github</a>`);
-  let liveLink = $(`<a id="project-live" href=${project.live}>Live Site</a>`);
-  let readMoreLink = $(`<a id="project-read-more" href="/project/${i}">Read More</a>`);
-  let links = $(`<div id="project-links"></div>`);
+  let title = $(`<h1 class="project-title">${project.name}</h1>`); 
+  let techs = $('<p class="project-techs"></p>'); 
+  let desc = $(`<p class="project-description">${project.description}</p>`);
+  let githubLink = $(`<a class="project-github" href=${project.github}>Github</a>`);
+  let liveLink = $(`<a class="project-live" href=${project.live}>Live Site</a>`);
+  let readMoreLink = $(`<a class="project-read-more" href="/project/${i}">Read More</a>`);
+  let links = $(`<div class="project-links"></div>`);
   links.append(readMoreLink, liveLink, githubLink);
   project.technologies.forEach((tech) => {
     let techSpan = $(`<span>${tech}, </span>`);
     techs.append(techSpan);
   });
-  let arrows = $(`<div id="project-arrows"><span class="project-arrow" id="prev"><i class="fa fa-chevron-left"></i><span>Prev Project</span></span><span class="project-arrow" id="next"><span>Next Project</span><i class="fa fa-chevron-right"></i></span> </div>`);
-  descriptionWrapper.append(title, techs, desc, links, arrows);
+  descriptionWrapper.append(title, techs, desc, links);
 
-  let photos = $(`<div id="project-photos"></div>`);
+  let photos = $(`<div class="project-photos"></div>`);
   let photosCarousel = $(`<div class="carousel" id="project-photos-carousel"></div></div>`);
-  let photosDisplay = $('<div class="carousel-wrapper" id="project-display">');
+  let photosDisplay = $('<div class="carousel-wrapper project-display">');
   let displayTop = $('<div class="project-display-top"></div>');
-  let displayBottom = $('<div id="project-display-bottom"></div>');
-  let bulletsDiv = $('<div id="bullets"></div>');
+  let displayBottom = $('<div class="project-display-bottom"></div>');
+  let bulletsDiv = $('<div class="bullets"></div>');
 
   // add bullet for each project image
   // and attach click event listener
@@ -171,44 +171,28 @@ const addSlide = function(i, slide) {
   let carousel = $('#projects-carousel');
   carousel.append(createProjectSlide(i, slide));
   startImageInterval(project, projectImageIndex);
-  
+
+  let showClass = (i > projectIndex) ? 'show-left' : 'show-right';
+  let hideClass = (i > projectIndex) ? 'hide-left' : 'hide-right';
+  let current = $('.current-slide');
+  let next = $('.next-slide');
+  projectIndex = i;
+  if(next.length) {
+    current.addClass(hideClass).on('animationend', function(e) {
+      $(this).remove();
+    });
+    next.addClass(showClass).on('animationend', function(e) {
+      $(this).removeClass(showClass)
+      .removeClass('next-slide')
+      .addClass('current-slide');
+      $('.project-arrow').on('click', (e) => handleArrowClick(e));
+      $('.projeect-thumbnail-wrapper img').on('click', (e) => handleThumbnailClick(e));
+    });
+  }
   // set image display height once image loads
   $('.project-image').on('load', function() {
     $('.project-display-top').height($(this).height());
   })
-
-  ////// PROJECT NAVIGATION
-  $('.project-arrow').click(function(e) {
-    if($(this).is('#prev')){
-      projectIndex = (projectIndex === 0) ? projects.length - 1 : projectIndex - 1;
-      addSlide(projectIndex, 'next-slide');
-      let currentSlide = $('.current-slide');
-      let nextSlide = $('.next-slide');
-      currentSlide.addClass('hide-left')
-      .on('animationend', function(e) {
-        $(this).remove();
-      });
-      nextSlide.addClass('show-left')
-      .on('animationend', function(e) {
-        $(this).removeClass('show-left').removeClass('next-slide').addClass('current-slide');
-      });
-    }
-    else {
-      projectIndex = (projectIndex === projects.length - 1) ? 0 : projectIndex + 1;
-      addSlide(projectIndex, 'next-slide');
-      let currentSlide = $('.current-slide');
-      let nextSlide = $('.next-slide');
-      currentSlide.addClass('hide-right')
-      .on('animationend', function(e) {
-        $(this).remove();
-      });
-      nextSlide.addClass('show-right')
-      .on('animationend', function(e) {
-        $(this).removeClass('show-right').removeClass('next-slide').addClass('current-slide');
-      });
-    }
-  });
-  /////////
 };
 
 const setElementHeights = function() {
@@ -217,8 +201,39 @@ const setElementHeights = function() {
   projImgDisplay.height(projImgHeight.height());
 };
 
+const handleArrowClick = function(e) {
+  console.log(e.target)
+  console.log(projectIndex)
+  $('.project-arrow').off('click');
+  $('.project-thumbnail-wrapper img').off('click');
+  let i = projectIndex;
+  console.log($(e.target).attr('id'))
+  if($(e.target).is('#prev')) {
+    i = (i === 0) ? projects.length - 1 : i - 1;
+  }
+  else {
+    i = (i === projects.length - 1) ? 0 : i + 1;
+  }
+  console.log(i)
+  addSlide(i, 'next-slide');
+  thumbnailActive.removeClass('thumbnail-active');
+  let thumbnail = $(`.project-thumbnail-wrapper img:eq(${i})`);
+  thumbnail.addClass('thumbnail-active');
+  thumbnailActive = thumbnail;
+};
+
+const handleThumbnailClick = function(e) {
+  $('.project-arrow').off('click');
+  $('.project-thumbnail-wrapper img').off('click');
+  let i = Number($(e.target).attr('data-index'));
+  addSlide(i, 'next-slide');
+  let thumbnail = $(`.project-thumbnail-wrapper img:eq(${i})`);
+  thumbnail.addClass('thumbnail-active');
+  thumbnailActive = thumbnail;
+};
+
 $(document).ready(function() {
-  addSlide(projectIndex, 'current-slide');
+  addSlide(0, 'current-slide');
 
   // ******************************************* 
   // events
@@ -250,9 +265,7 @@ $(document).ready(function() {
     }
   });
 
-  let thumbnailActive;
   $('.project-thumbnail-wrapper img').on('mouseover', function(e) {
-    thumbnailActive = $('.thumbnail-active');
     thumbnailActive.removeClass('thumbnail-active');
     $(this).addClass('thumbnail-active');
   });
@@ -262,34 +275,12 @@ $(document).ready(function() {
     thumbnailActive.addClass('thumbnail-active');
   });
 
-  $('.project-thumbnail-wrapper img').click(function(e) {
-    let i = $(this).attr('data-index');
-    addSlide(i, 'next-slide');
-    let hideClass = (i > projectIndex) ? 'hide-right' : 'hide-left';
-    let showClass = (i > projectIndex) ? 'show-right' : 'show-left';
-    let currentSlide = $('.current-slide');
-    let nextSlide = $('.next-slide');
-    currentSlide.addClass(hideClass)
-    .on('animationend', function(e) {
-      $(this).remove();
-    });
-    nextSlide.addClass(showClass)
-    .on('animationend', function(e) {
-      $(this).removeClass(showClass).removeClass('next-slide').addClass('current-slide');
-    });
+  $('.project-thumbnail-wrapper img').click((e) => {handleThumbnailClick(e)});
 
-    projectIndex = i;
-    thumbnailActive.removeClass('thumbnail-active');
-    $(this).addClass('thumbnail-active');
-    thumbnailActive = $(this);
-  });
+  $('.project-arrow').click((e) => {handleArrowClick(e)});
 
-  $('.contact-link').click(function(e) {
-    showContact();
-  });
+  $('.contact-link').click(showContact);
 
-  $('.page-lid').click(function(e) {
-    hideContact();
-  });
+  $('.page-lid').click(hideContact);
   setNavHeight(currentPage);
 });
