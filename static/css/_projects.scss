@@ -1,18 +1,23 @@
 #projects-section {
   background: linear-gradient(to bottom left, #dedfe1, #fff);
-  height: 750px;
 
   #project-arrows {
     display: flex;
-    justify-content: space-between;
+    z-index: 100;
+    position: relative;
+    background-color: rgba(255,255,255,0.6);
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    padding: 0.5em 0;
 
     .project-arrow {
-      @extend %button-styles;
       transition: all 0.2s ease;
       font-size: 1em;
       cursor: pointer;
       display: flex;
       align-items: center;
+      margin-left: 3em;
+      color: #a9c5e8;
 
       span {
         padding: 0 0.2em;
@@ -20,17 +25,18 @@
     }
 
     .project-arrow:hover {
-      background-color: #f8f8f8;
-    }
-
-    a:hover {
-      color: #a9c5e8;
+      opacity: 0.6;
     }
   }
 
   #projects-thumbnails {
     display: flex;
     padding: 2em 3em;
+    flex-wrap: wrap;
+
+    .project-thumbnail-wrapper {
+      flex: 1;
+    }
 
     img {
       flex: 1;
@@ -57,40 +63,52 @@
     }
   }
 
-  #projects-flex {
+  .projects-flex {
     display: flex;
-    #project-description-wrapper, #project-photos {
+    .project-description-wrapper, .project-photos {
       flex: 1;
       padding: 3em;
     }
 
-    #project-description-wrapper {
-      #project-description {
+    .project-description-wrapper {
+      .project-description {
         font-size: 1em;
-        padding: 1em 0;
+        padding: 1em 0 0.5em 0;
   
         span {
           color: #a9c5e8;
         }
       }
 
-      #project-links {
+      .project-links {
         border-bottom: 5px solid #ddeaf0;
-        padding-bottom: 1em;
+        padding-bottom: 2em;
         margin-bottom: 1em;
 
-        #project-read-more {
+        .project-read-more {
           color: #a9c5e8;
+          display: block;
+          margin-bottom: 2em;
         }
 
-        a:hover {
+        .project-read-more:hover {
           opacity: 0.5;
+        }
+
+        .project-github, .project-live {
+          @extend %button-styles;
+          margin-right: 0.5em;
+        }
+
+        .project-github:hover, .project-live:hover {
+          background-color: #fff;
+          border-color: #fff;
         }
       }
     }
 
-    #project-photos {
-      #project-display {
+    .project-photos {
+      .project-display {
         .project-display-top {
           position: relative;
           .project-image {
@@ -102,8 +120,8 @@
             margin: 100px;
           }
         }
-        #project-display-bottom {
-          #bullets {
+        .project-display-bottom {
+          .bullets {
             text-align: center;
             color: #222;
             font-size: 3em;
@@ -122,4 +140,10 @@
       }
     }
   }
+}
+
+#projects-section:after {
+  padding: 20%;
+  content: "";
+  display: block;
 }

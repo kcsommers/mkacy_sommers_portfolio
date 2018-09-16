@@ -9,7 +9,7 @@
           <div class="fade-in" id="landing-intro">
             <h1 class="letter-space">M Kacy Sommers</h1>
             <h3 class="letter-space">Full Stack Web Developer</h3>
-            <button>See Projects</button>
+            <button class="nav-link" href="/#projects-section">See Projects</button>
           </div>
         </div>
     </div>
@@ -24,8 +24,11 @@
         <div id="bio">
           <h2>Hi, I'm Kacy.</h2> 
           <p>
-            I'm a Seattle based developer who loves to create full stack, fully responsive web applications that focus strongly on user experience.
-            Lorem ipsum dolor sit amet, no dicit scribentur has, in eam posse sonet aeterno, no nihil civibus fabellas sit. Cum verear euismod ad. Postea vituperata ad vel, mei case ubique cu. Hinc accusam qui ne, ut eum invenire gubergren sadipscing. Vis eu dolor nemore postulant. Odio vituperata ne sit.
+            <span id="about-tagline">I'm a Seattle based developer who loves to create full stack, fully responsive web applications that focus strongly on user experience.</span>
+            With a diverse background of education, leadership, creative work and customer service I have cultivated the logical and creative skills neccessary to bring ideas to life online. Using technologies such as Node, React, Django, Postgres and MongoDB, I have written a variety of unique and helpful applications. I keep a curious and an open mind, and I'm learning more and more every day. 
+            <br />
+            <br />
+            When I'm not coding, I'm usually walking my dog <span id="joni-span">Joni</span> and thinking about coding.
           </p>
         </div>
       </div>
@@ -47,16 +50,16 @@
           </div>
         <% }); %>
       </div>
-      <div class="carousel" id="projects-carousel"></div>
       <div id="project-arrows">
         <span class="project-arrow" id="prev">
-          <i class="fa fa-chevron-left"></i><span>Prev Project</span>
+          <i class="fa fa-chevron-left"></i><span id="prev">Prev Project</span>
         </span>
         <span class="project-arrow" id="next">
-          <span>Next Project</span>
+          <span id="next">Next Project</span>
           <i class="fa fa-chevron-right"></i>
         </span>
       </div>
+      <div class="carousel" id="projects-carousel"></div>
     </div>
   </section>
 
@@ -87,31 +90,3 @@
     </div>
   </section>
 </main>
-
-<section id="contact-form">
-  <div id="contact-info">
-    <h4><i class="fas fa-laugh-wink"></i><span>Mark Kacy Sommers</span></h4>
-    <h4><i class="fa fa-phone"></i><span>330-819-2592</span></h4>
-    <h4><a href="#"><i class="fa fa-envelope"></i></a><span>kacysommers@gmail.com</span></h4>
-    <h4><a href="https://www.linkedin.com/in/kacy-sommers/"><i class="fab fa-linkedin"></i></a><span>kcsommers</span></h4>
-    <h4><a href="https://github.com/kcsommers"><i class="fab fa-github"></i></a><span>kcsommers</span></h4>
-  </div>
-
-  <div id="contact-form-wrapper">
-    <form action="/contact" method="POST">
-      <label htmlFor="name">
-        <input required placeholder="Name" type="text" name="name" />
-      </label>
-      <label htmlFor="email">
-        <input required placeholder="Email" type="email" name="email" />
-      </label>
-      <label htmlFor="company">
-        <input required placeholder="Company" type="text" name="company" />
-      </label>
-      <label htmlFor="message">
-        <textarea required placeholder="Message" name="message" id="message"></textarea>
-      </label>
-      <input type="submit" value="Send Message" />
-    </form>
-  </div>
-</section>

@@ -10,16 +10,29 @@
 
     #about-photo {
       img {
-        border: 30px solid #fff;
+        border: 40px solid #fff;
       }
     }
 
     #bio {
-      text-align: center;
       padding: 4em 0em;
-      h2, p {
-        padding: 0 40px;
+    
+      p, h2 {
+        padding: 0 30px;
         line-height: 1.5em;
+
+        #about-tagline {
+          font-size: 1.3em;
+          display: block;
+          color: #666;
+          padding: 0.2em 0 0.5em 0;
+          line-height: 1.3em;
+        }
+
+        #joni-span {
+          color: #e2c4a5;
+          cursor: pointer;
+        }
       }
     }
 
