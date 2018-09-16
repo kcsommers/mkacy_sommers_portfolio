@@ -5,8 +5,12 @@
   font-family: Cabin, sans serif;
 }
 
-body {
+body, html {
   overflow-x: hidden;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }
 
 main, nav {
@@ -74,6 +78,8 @@ img {
   right: 0;
   z-index: 900;
   display: none;
+  transition: all 0.8s ease;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #projects-section .projects-flex .project-description-wrapper .project-links .project-github, #projects-section .projects-flex .project-description-wrapper .project-links .project-live, #landing-section #landing-intro button {
@@ -129,9 +135,49 @@ img {
   font-size: 2.4em;
 }
 
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ddeaf0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6em 0;
+  transition: all 0.7s ease;
+  overflow-y: scroll;
+}
+#mobile-nav a {
+  flex: 1;
+  font-size: 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 3px solid rgba(0, 0, 0, 0);
+  border-bottom: 3px solid rgba(0, 0, 0, 0);
+  margin: 0.75em 0;
+}
+#mobile-nav a i {
+  font-size: 1.6em;
+}
+#mobile-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-color: #fff;
+}
+
+.hide-mobile-nav {
+  transform: translateY(-100%);
+  opacity: 0.7;
+}
+
 #landing-section {
   background-color: #222;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 375px;
   color: #fff;
 }
 #landing-section #landing-bg {
@@ -145,7 +191,8 @@ img {
   min-width: 650px;
 }
 #landing-section .center-wrapper {
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 375px;
 }
 #landing-section #landing-intro {
   text-align: center;
@@ -153,10 +200,10 @@ img {
 }
 #landing-section #landing-intro h3 {
   margin: 0.5em 0;
-  padding-bottom: 1em;
 }
 #landing-section #landing-intro button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: white;
+  border-color: #fff;
 }
 
 #about-section {
@@ -169,15 +216,25 @@ img {
   flex: 1;
 }
 #about-section #about-flex #about-photo img {
-  border: 30px solid #fff;
+  border: 40px solid #fff;
 }
 #about-section #about-flex #bio {
-  text-align: center;
   padding: 4em 0em;
 }
-#about-section #about-flex #bio h2, #about-section #about-flex #bio p {
-  padding: 0 40px;
+#about-section #about-flex #bio p, #about-section #about-flex #bio h2 {
+  padding: 0 30px;
   line-height: 1.5em;
+}
+#about-section #about-flex #bio p #about-tagline, #about-section #about-flex #bio h2 #about-tagline {
+  font-size: 1.3em;
+  display: block;
+  color: #666;
+  padding: 0.2em 0 0.5em 0;
+  line-height: 1.3em;
+}
+#about-section #about-flex #bio p #joni-span, #about-section #about-flex #bio h2 #joni-span {
+  color: #e2c4a5;
+  cursor: pointer;
 }
 
 #projects-section {
@@ -187,6 +244,10 @@ img {
   display: flex;
   z-index: 100;
   position: relative;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  padding: 0.5em 0;
 }
 #projects-section #project-arrows .project-arrow {
   transition: all 0.2s ease;
@@ -195,19 +256,21 @@ img {
   display: flex;
   align-items: center;
   margin-left: 3em;
+  color: #a9c5e8;
 }
 #projects-section #project-arrows .project-arrow span {
   padding: 0 0.2em;
 }
 #projects-section #project-arrows .project-arrow:hover {
-  background-color: #f8f8f8;
-}
-#projects-section #project-arrows a:hover {
-  color: #a9c5e8;
+  opacity: 0.6;
 }
 #projects-section #projects-thumbnails {
   display: flex;
   padding: 2em 3em;
+  flex-wrap: wrap;
+}
+#projects-section #projects-thumbnails .project-thumbnail-wrapper {
+  flex: 1;
 }
 #projects-section #projects-thumbnails img {
   flex: 1;
@@ -253,11 +316,15 @@ img {
   display: block;
   margin-bottom: 2em;
 }
+#projects-section .projects-flex .project-description-wrapper .project-links .project-read-more:hover {
+  opacity: 0.5;
+}
 #projects-section .projects-flex .project-description-wrapper .project-links .project-github, #projects-section .projects-flex .project-description-wrapper .project-links .project-live {
   margin-right: 0.5em;
 }
-#projects-section .projects-flex .project-description-wrapper .project-links a:hover {
-  opacity: 0.5;
+#projects-section .projects-flex .project-description-wrapper .project-links .project-github:hover, #projects-section .projects-flex .project-description-wrapper .project-links .project-live:hover {
+  background-color: #fff;
+  border-color: #fff;
 }
 #projects-section .projects-flex .project-photos .project-display .project-display-top {
   position: relative;
@@ -321,7 +388,8 @@ img {
   padding: 1em 0;
 }
 #contact-section #contact-intro #contact-intro-wrapper button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: white;
+  border-color: #fff;
 }
 
 #contact-form {
@@ -454,6 +522,20 @@ img {
 }
 
 @media screen and (max-width: 900px) {
+  #main-nav #nav-wrapper {
+    padding: 0 2em;
+  }
+  #main-nav #nav-wrapper #nav-menu .mobile-show {
+    display: block;
+  }
+  #main-nav #nav-wrapper #nav-menu .mobile-hide {
+    display: none;
+  }
+
+  #landing-section #landing-intro .letter-space {
+    animation-name: none;
+  }
+
   #about-flex {
     display: flex;
     flex-direction: column-reverse;
@@ -468,16 +550,26 @@ img {
   }
 
   #projects-section {
-    height: 950px;
+    text-align: center;
   }
-  #projects-section #projects-flex {
+  #projects-section #project-arrows {
+    justify-content: space-around;
+  }
+  #projects-section #project-arrows .project-arrow {
+    margin: 0;
+  }
+  #projects-section .projects-flex {
     flex-direction: column;
   }
-  #projects-section #projects-flex #project-description-wrapper {
-    padding: 2em;
+  #projects-section .projects-flex .project-description-wrapper {
+    padding: 3em 1em 0 1em;
   }
-  #projects-section #projects-flex #project-photos {
-    padding: 0 2em 2em 2em;
+  #projects-section .projects-flex .project-photos {
+    padding: 1em 3em;
+  }
+
+  #projects-section:after {
+    padding: 57%;
   }
 
   #project-page-section #project-page-wrapper #project-details {
@@ -491,16 +583,6 @@ img {
   }
 }
 @media screen and (max-width: 750px) {
-  #main-nav #nav-wrapper {
-    padding: 0 2em;
-  }
-  #main-nav #nav-wrapper #nav-menu .mobile-show {
-    display: block;
-  }
-  #main-nav #nav-wrapper #nav-menu .mobile-hide {
-    display: none;
-  }
-
   #landing-section #landing-intro .letter-space {
     animation-name: none;
   }
@@ -511,11 +593,12 @@ img {
     font-size: 30px;
   }
 
-  #projects-section {
-    height: 900px;
-  }
   #projects-section #projects-flex #project-description-wrapper h1 {
     font-size: 50px;
+  }
+
+  #projects-section:after {
+    padding: 69%;
   }
 
   #contact-section #contact-intro #contact-intro-wrapper {
@@ -531,17 +614,24 @@ img {
   }
 }
 @media screen and (max-width: 500px) {
-  #projects-section {
-    height: 750px;
+  #projects-section #projects-thumbnails .project-thumbnail-wrapper {
+    flex: 1 1 50%;
   }
-  #projects-section #projects-flex {
+  #projects-section .projects-flex {
     text-align: center;
   }
-  #projects-section #projects-flex #project-description-wrapper #project-techs {
+  #projects-section .projects-flex .project-description-wrapper .project-title {
+    font-size: 50px;
+  }
+  #projects-section .projects-flex .project-description-wrapper #project-techs {
     font-size: 1em;
   }
-  #projects-section #projects-flex #project-description-wrapper #project-arrows .project-arrow {
+  #projects-section .projects-flex .project-description-wrapper #project-arrows .project-arrow {
     font-size: 0.9em;
+  }
+
+  #projects-section:after {
+    padding: 82%;
   }
 
   #contact-section #contact-intro #contact-intro-wrapper {
@@ -549,6 +639,15 @@ img {
   }
   #contact-section #contact-intro #contact-intro-wrapper h2 {
     font-size: 40px;
+  }
+
+  #skills-section .skill-icon {
+    min-width: 80px;
+  }
+
+  #contact-form {
+    width: 100%;
+    padding: 2em;
   }
 }
 @keyframes fade-in {
@@ -566,7 +665,7 @@ img {
     letter-spacing: 0px;
   }
   100% {
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
   }
 }
 @keyframes hide-right {

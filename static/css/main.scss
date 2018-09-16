@@ -5,8 +5,12 @@
   font-family: Cabin, sans serif;
 }
 
-body {
+body, html {
   overflow-x: hidden;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }
 
 main, nav {
@@ -74,6 +78,8 @@ img {
   right: 0;
   z-index: 900;
   display: none;
+  transition: all 0.8s ease;
+  background-color: rgba(0,0,0,0);
 }
 
 %button-styles {

@@ -49,14 +49,12 @@ const projects = [
 	}
 ];
 
-// ******************************************* 
-// global variables
-// *******************************************
+// Globals
+var projectIndex = 0;
+var projectImageIndex = 0;
+var projectImageInterval;
+var thumbnailActive = $('.thumbnail-active');
 var currentPage = window.location.href.split('http://localhost:3000')[1];
-
-// ******************************************* 
-// functions
-// *******************************************
 
 const setNavHeight = function(page) {
   const navbar = $('#nav-wrapper');
@@ -70,30 +68,25 @@ const setNavHeight = function(page) {
 
 const showContact = function() {
   $('#contact-form').css({right: 0});
-  $('body').css({overflowY: 'hidden'});
   $('.page-lid').css({display: 'block'});
   $('nav').css({filter: 'blur(2px)'});
   $('main').css({filter: 'blur(2px)'});
   $('footer').css({filter: 'blur(2px)'});
+  $('body').addClass('no-scroll');
 };
 
 const hideContact = function() {
   $('#contact-form').css({right: '-500px'});
-  $('body').css({overflowY: 'initial'});
   $('.page-lid').css({display: 'none'});
   $('nav').css({filter: 'none'});
   $('main').css({filter: 'none'});
   $('footer').css({filter: 'none'});
+  $('body').removeClass('no-scroll');
 }
 
 // ******************************************* 
 // project carousels
 // *******************************************
-// Globals
-var projectIndex = 0;
-var projectImageIndex = 0;
-var projectImageInterval;
-var thumbnailActive = $('.thumbnail-active');
 
 // this function fills the project image carousel
 const fillProjectImage = (project, i) => {
@@ -167,6 +160,8 @@ const createProjectSlide = function(i, slide) {
 };
 
 const addSlide = function(i, slide) {
+  $('.project-thumbnail-wrapper img').unbind('click', handleThumbnailClick);
+  $('.project-arrow').unbind('click', handleArrowClick);
   const project = projects[i];
   let carousel = $('#projects-carousel');
   carousel.append(createProjectSlide(i, slide));
@@ -176,23 +171,30 @@ const addSlide = function(i, slide) {
   let hideClass = (i > projectIndex) ? 'hide-left' : 'hide-right';
   let current = $('.current-slide');
   let next = $('.next-slide');
-  projectIndex = i;
+
+  thumbnailActive.removeClass('thumbnail-active');
+  let thumbnail = $(`.project-thumbnail-wrapper img:eq(${i})`);
+  thumbnail.addClass('thumbnail-active');
+  thumbnailActive = thumbnail;
+
   if(next.length) {
     current.addClass(hideClass).on('animationend', function(e) {
       $(this).remove();
+      $('.project-thumbnail-wrapper img').bind('click', handleThumbnailClick);
+      $('.project-arrow').bind('click', handleArrowClick);
     });
     next.addClass(showClass).on('animationend', function(e) {
       $(this).removeClass(showClass)
       .removeClass('next-slide')
       .addClass('current-slide');
-      $('.project-arrow').on('click', (e) => handleArrowClick(e));
-      $('.projeect-thumbnail-wrapper img').on('click', (e) => handleThumbnailClick(e));
     });
   }
   // set image display height once image loads
   $('.project-image').on('load', function() {
     $('.project-display-top').height($(this).height());
-  })
+  });
+
+  projectIndex = i;
 };
 
 const setElementHeights = function() {
@@ -202,35 +204,55 @@ const setElementHeights = function() {
 };
 
 const handleArrowClick = function(e) {
-  console.log(e.target)
-  console.log(projectIndex)
-  $('.project-arrow').off('click');
-  $('.project-thumbnail-wrapper img').off('click');
-  let i = projectIndex;
-  console.log($(e.target).attr('id'))
+  let i;
   if($(e.target).is('#prev')) {
-    i = (i === 0) ? projects.length - 1 : i - 1;
+    i = (projectIndex === 0) ? projects.length - 1 : projectIndex - 1;
   }
   else {
-    i = (i === projects.length - 1) ? 0 : i + 1;
+    i = (projectIndex === projects.length - 1) ? 0 : projectIndex + 1;
   }
-  console.log(i)
   addSlide(i, 'next-slide');
-  thumbnailActive.removeClass('thumbnail-active');
-  let thumbnail = $(`.project-thumbnail-wrapper img:eq(${i})`);
-  thumbnail.addClass('thumbnail-active');
-  thumbnailActive = thumbnail;
 };
 
 const handleThumbnailClick = function(e) {
-  $('.project-arrow').off('click');
-  $('.project-thumbnail-wrapper img').off('click');
   let i = Number($(e.target).attr('data-index'));
   addSlide(i, 'next-slide');
-  let thumbnail = $(`.project-thumbnail-wrapper img:eq(${i})`);
-  thumbnail.addClass('thumbnail-active');
-  thumbnailActive = thumbnail;
 };
+
+const handleBurgerClick = function(e) {
+  e.preventDefault();
+  $('#mobile-nav').toggleClass('hide-mobile-nav');
+  $('body').toggleClass('no-scroll');
+  $('html').toggleClass('no-scroll');
+  $('#nav-burger i').toggleClass('fa-times');
+};  
+
+const handleNavClick = function(e) {
+  if($(e.target).hasClass('mobile-nav-link')) {
+    handleBurgerClick(e);
+  }
+
+  let page = $(e.target).attr('href');
+  if($(e.target).is('#resume-link')) {
+    e.preventDefault();
+    window.location = page;
+  }
+  else if($(e.target).is('#contact-link')) {
+    e.preventDefault();
+    showContact();
+  }
+  else {
+    if(currentPage === '/' || currentPage === '/#about-section' || currentPage === '/#projects-section') {
+      e.preventDefault();
+      const section = document.getElementById($(e.target).attr('href').split('/#')[1]);
+      let top = ($(e.target).attr('href') === '/') ? 0 : $(section).offset().top - 70;
+      window.scroll({top, left: 0, behavior: 'smooth'});
+    }
+    else {
+      window.location = page;
+    }
+  }
+}
 
 $(document).ready(function() {
   addSlide(0, 'current-slide');
@@ -246,25 +268,6 @@ $(document).ready(function() {
     setElementHeights();
   });
 
-  $('.nav-link').click(function(e) {
-    if($(this).is('#resume-link')) {
-      e.preventDefault();
-      let page = $(this).attr('href');
-      window.location = page;
-    }
-    else if($(this).is('#contact-link')) {
-      e.preventDefault();
-      showContact();
-    }
-    else {
-      if(currentPage === '/' || currentPage === '/#about-section' || currentPage === '/#projects-section') {
-        e.preventDefault();
-        const about = document.getElementById($(this).attr('href').split('/#')[1]);
-        about.scrollIntoView({behavior: 'smooth'});
-      }
-    }
-  });
-
   $('.project-thumbnail-wrapper img').on('mouseover', function(e) {
     thumbnailActive.removeClass('thumbnail-active');
     $(this).addClass('thumbnail-active');
@@ -275,12 +278,27 @@ $(document).ready(function() {
     thumbnailActive.addClass('thumbnail-active');
   });
 
-  $('.project-thumbnail-wrapper img').click((e) => {handleThumbnailClick(e)});
+  $('.nav-link').on('click', handleNavClick);
 
-  $('.project-arrow').click((e) => {handleArrowClick(e)});
+  $('.project-thumbnail-wrapper img').on('click', handleThumbnailClick);
+
+  $('.project-arrow').on('click', handleArrowClick);
 
   $('.contact-link').click(showContact);
 
   $('.page-lid').click(hideContact);
+
+  $('#nav-burger').on('click', handleBurgerClick);
+
+  $('#joni-span').on('mouseover', function(e) {
+    $('#about-photo img').attr('src', '../images/joni.jpg');
+    $('#about-photo img').attr('alt', 'Joni Blue');
+  });
+
+  $('#joni-span').on('mouseout', function(e) {
+    $('#about-photo img').attr('src', '../images/about_background.jpg');
+    $('#about-photo img').attr('alt', 'M Kacy Sommers');
+  });
+
   setNavHeight(currentPage);
 });

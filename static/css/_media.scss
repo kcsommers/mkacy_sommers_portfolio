@@ -1,4 +1,27 @@
 @media screen and (max-width: 900px) {
+  #main-nav {
+    #nav-wrapper {
+      padding: 0 2em;
+      #nav-menu {
+        .mobile-show {
+          display: block;
+        }
+    
+        .mobile-hide {
+          display: none;
+        }
+      }
+    }
+  }
+
+  #landing-section {
+    #landing-intro {
+      .letter-space {
+        animation-name: none;
+      }
+    }
+  }
+  
   #about-flex {
     display: flex;
     flex-direction: column-reverse;
@@ -19,18 +42,28 @@
   }
 
   #projects-section {
-    height: 950px;
-    #projects-flex {
-      flex-direction: column;
-
-      #project-description-wrapper {
-        padding: 2em;
-      }
-
-      #project-photos {
-        padding: 0 2em 2em 2em;
+    text-align: center;
+    #project-arrows {
+      justify-content: space-around;
+      .project-arrow {
+        margin: 0;
       }
     }
+
+    .projects-flex {
+      flex-direction: column;
+      .project-description-wrapper {
+        padding: 3em 1em 0 1em;
+      }
+
+      .project-photos {
+        padding: 1em 3em;
+      }
+    }
+  }
+
+  #projects-section:after {
+    padding: 57%;
   }
 
   #project-page-section {
@@ -52,22 +85,7 @@
 
 
 @media screen and (max-width: 750px) {
-  #main-nav {
-    #nav-wrapper {
-      padding: 0 2em;
-      #nav-menu {
-        .mobile-show {
-          display: block;
-        }
-    
-        .mobile-hide {
-          display: none;
-        }
-      }
-    }
-  }
-
-  #landing-section {
+   #landing-section {
     #landing-intro {
       .letter-space {
         animation-name: none;
@@ -85,7 +103,6 @@
   }
 
   #projects-section {
-    height: 900px;
     #projects-flex {
       #project-description-wrapper {
         h1 {
@@ -93,6 +110,10 @@
         }
       }
     }
+  }
+
+  #projects-section:after {
+    padding: 69%;
   }
 
   #contact-section {
@@ -116,11 +137,20 @@
 
 @media screen and (max-width: 500px) {
   #projects-section {
-    height: 750px;
-    #projects-flex {
+    #projects-thumbnails {
+      .project-thumbnail-wrapper {
+        flex: 1 1 50%;
+      }
+    }
+
+    .projects-flex {
       text-align: center;
 
-      #project-description-wrapper {
+      .project-description-wrapper {
+        .project-title {
+          font-size: 50px;
+        }
+
         #project-techs {
           font-size: 1em;
         }
@@ -134,6 +164,10 @@
     }
   }
 
+  #projects-section:after {
+    padding: 82%;
+  }
+
   #contact-section {
     #contact-intro {
       #contact-intro-wrapper {
@@ -144,5 +178,16 @@
         }
       }
     }
+  }
+
+  #skills-section {
+    .skill-icon {
+      min-width: 80px;
+    }
+  }
+
+  #contact-form {
+    width: 100%;
+    padding: 2em;
   }
 }

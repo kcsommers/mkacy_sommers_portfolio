@@ -13,7 +13,7 @@
     <nav id="main-nav">
       <div id="nav-wrapper">
         <div id="nav-left">
-          <a class="nav-link" href="/">MKS</a>
+          <a id="initials" class="nav-link" href="/">MKS</a>
         </div>
         <div id="nav-right">
           <div id="nav-menu">
@@ -27,7 +27,41 @@
         </div>
       </div>
     </nav>
+    <nav class="hide-mobile-nav" id="mobile-nav">
+      <a class="nav-link mobile-nav-link" href="/#about-section">About</a>
+      <a class="nav-link mobile-nav-link" href="/#projects-section">Projects</a>
+      <a class="nav-link mobile-nav-link" id="resume-link" href="/resume">Resume</a>
+      <a class="nav-link mobile-nav-link" id="contact-link" href="#">Contact</a>
+      <a class="nav-link mobile-nav-link" id="github-link" href="https://github.com/kcsommers"><i class="fab fa-github"></i></a>
+    </nav>
     <%- body %>
+    <section id="contact-form">
+      <div id="contact-info">
+        <h4><i class="fas fa-laugh-wink"></i><span>Mark Kacy Sommers</span></h4>
+        <h4><i class="fa fa-phone"></i><span>330-819-2592</span></h4>
+        <h4><a href="#"><i class="fa fa-envelope"></i></a><span>kacysommers@gmail.com</span></h4>
+        <h4><a href="https://www.linkedin.com/in/kacy-sommers/"><i class="fab fa-linkedin"></i></a><span>kcsommers</span></h4>
+        <h4><a href="https://github.com/kcsommers"><i class="fab fa-github"></i></a><span>kcsommers</span></h4>
+      </div>
+    
+      <div id="contact-form-wrapper">
+        <form action="/contact" method="POST">
+          <label htmlFor="name">
+            <input required placeholder="Name" type="text" name="name" />
+          </label>
+          <label htmlFor="email">
+            <input required placeholder="Email" type="email" name="email" />
+          </label>
+          <label htmlFor="company">
+            <input required placeholder="Company" type="text" name="company" />
+          </label>
+          <label htmlFor="message">
+            <textarea required placeholder="Message" name="message" id="message"></textarea>
+          </label>
+          <input type="submit" value="Send Message" />
+        </form>
+      </div>
+    </section>
     <footer id="main-footer">
       <div class="center-wrapper" id="footer-wrapper">
         <a class="center-wrapper" href="https://github.com/kcsommers"><i class="fab fa-github"></i></a>

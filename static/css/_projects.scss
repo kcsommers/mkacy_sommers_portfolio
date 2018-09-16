@@ -5,6 +5,10 @@
     display: flex;
     z-index: 100;
     position: relative;
+    background-color: rgba(255,255,255,0.6);
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    padding: 0.5em 0;
 
     .project-arrow {
       transition: all 0.2s ease;
@@ -13,6 +17,7 @@
       display: flex;
       align-items: center;
       margin-left: 3em;
+      color: #a9c5e8;
 
       span {
         padding: 0 0.2em;
@@ -20,17 +25,18 @@
     }
 
     .project-arrow:hover {
-      background-color: #f8f8f8;
-    }
-
-    a:hover {
-      color: #a9c5e8;
+      opacity: 0.6;
     }
   }
 
   #projects-thumbnails {
     display: flex;
     padding: 2em 3em;
+    flex-wrap: wrap;
+
+    .project-thumbnail-wrapper {
+      flex: 1;
+    }
 
     img {
       flex: 1;
@@ -85,13 +91,18 @@
           margin-bottom: 2em;
         }
 
+        .project-read-more:hover {
+          opacity: 0.5;
+        }
+
         .project-github, .project-live {
           @extend %button-styles;
           margin-right: 0.5em;
         }
 
-        a:hover {
-          opacity: 0.5;
+        .project-github:hover, .project-live:hover {
+          background-color: #fff;
+          border-color: #fff;
         }
       }
     }
