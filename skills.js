@@ -1,6 +1,6 @@
 const skills = [
   {
-    src: '../images/icons/javascript.png',
+    src: '../images/icons/javaScript.png',
     name: 'JavaScript'
   },
   {

@@ -54,7 +54,7 @@ var projectIndex = 0;
 var projectImageIndex = 0;
 var projectImageInterval;
 var thumbnailActive = $('.thumbnail-active');
-var currentPage = window.location.href.split('http://www.mkacysommers.com')[1];
+var currentPage = window.location.href.split('http://mkacysommers.herokuapp.com')[1];
 
 const setNavHeight = function(page) {
   const navbar = $('#nav-wrapper');
@@ -233,6 +233,7 @@ const handleNavClick = function(e) {
   }
 
   let page = $(e.target).attr('href');
+  
   if($(e.target).is('#resume-link')) {
     e.preventDefault();
     window.location = page;
@@ -242,7 +243,7 @@ const handleNavClick = function(e) {
     showContact();
   }
   else {
-    if(currentPage === 'http://www.mkacysommers.com' || currentPage === 'http://www.mkacysommers.com/#about-section' || currentPage === 'http://www.mkacysommers.com/#projects-section') {
+    if(currentPage === '/' || currentPage === '/#about-section' || currentPage === '/#projects-section') {
       e.preventDefault();
       const section = document.getElementById($(e.target).attr('href').split('/#')[1]);
       let top = ($(e.target).attr('href') === '/') ? 0 : $(section).offset().top - 70;
