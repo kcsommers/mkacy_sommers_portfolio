@@ -54,7 +54,7 @@ var projectIndex = 0;
 var projectImageIndex = 0;
 var projectImageInterval;
 var thumbnailActive = $('.thumbnail-active');
-var currentPage = window.location.href.split('http://mkacysommers.com')[1];
+var currentPage = window.location.href.split('http://www.mkacysommers.com')[1];
 
 const setNavHeight = function(page) {
   const navbar = $('#nav-wrapper');
