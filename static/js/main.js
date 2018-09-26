@@ -268,6 +268,20 @@ const handleZoom = function(e) {
   resume.css({width: `${resumeWidth}%`})
 };
 
+const preloadImages = function() {
+  const allImages = [];
+  const joniImg = new Image();
+  joniImg.src = '../images/joni.jpg';
+  allImages.push(joniImg);
+  projects.forEach((project) => {
+    project.images.forEach((img) => {
+      let image = new Image();
+      image.src = img;
+      allImages.push(image);
+    });
+  });
+};
+
 $(document).ready(function() {
   addSlide(0, 'current-slide');
 
@@ -316,5 +330,6 @@ $(document).ready(function() {
 
   $('.zoom').on('click', function(e){handleZoom(e)});
 
+  preloadImages();
   setNavHeight(currentPage);
 });
