@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- v1.4.1 -->
+<!-- v1.5.1 -->
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,6 +71,7 @@
 
         var Sidebar = {},
             loadedThumbsArray = [],
+            thumbnailPositions = [],
             lastScroll = 0,
             sidebar,
             thumbnailBar,
@@ -85,7 +86,9 @@
             bookmarkScrollPt = 0,
             searchScrollPt = 0,
             curPg,
-            pgCount;
+            pgCount,
+            MAX_THUMBNAIL_WIDTH = 160,
+            MAX_THUMBNAIL_HEIGHT = 200;
 
         /**
          * Performs the setup for the sidebar
@@ -170,7 +173,10 @@
             thumbnailPanel.className = "visible";
             bookmarkPanel.className = "hidden";
             searchPanel.className = "hidden";
-            updateThumbnailPanelToCurrentPage();
+            if (sidebar.className.indexOf("open") !== -1) {
+                loadVisibleThumbnails();
+                updateThumbnailPanelToCurrentPage();
+            }
             Button.thumbnails.className = 'disabled btn';
             Button.outlines.className = 'btn';
             Button.search.className = 'btn';
@@ -236,12 +242,10 @@
          */
         var loadThumbnailFrames = function (bounds) {
             var heights = [];
-            var MAXWIDTH = 160;
-            var MAXHEIGHT = 200;
             // Calculate height for max width of 160px and max height of 200px
             for (var i = 0; i < bounds.length; i++) {
-                var height = Math.floor(bounds[i][1] * (MAXWIDTH / bounds[i][0]));
-                heights[i] = (bounds[i][0] > bounds[i][1] || height <= MAXHEIGHT) ? height : MAXHEIGHT;
+                var height = Math.floor(bounds[i][1] * (MAX_THUMBNAIL_WIDTH / bounds[i][0]));
+                heights[i] = (bounds[i][0] > bounds[i][1] || height <= MAX_THUMBNAIL_HEIGHT) ? height : MAX_THUMBNAIL_HEIGHT;
             }
 
             function makeThumbnailClickHandler(pg) {
@@ -264,14 +268,33 @@
                 ele.innerHTML = '<div class="spinner" style="margin-top: ' + margin + 'px;"></div>';
                 thumbnailPanel.appendChild(ele);
             }
+
+            for (page = 1; page <= bounds.length; page++) {
+                thumbnailPositions[page - 1] = thumbnailPanel.children[page - 1].offsetTop;
+            }
         };
 
         var handleThumbnailBarScroll = function () {
             var scrollTop = thumbnailBar.scrollTop;
             lastScroll = scrollTop;
+            showVisibleSpinners();
             setTimeout(function () {
                 loadVisibleThumbnails(scrollTop);
             }, 500);
+        };
+
+        var showVisibleSpinners = function() {
+            var startY = thumbnailBar.scrollTop;
+            var endY = startY + thumbnailBar.clientHeight;
+            for (var index = 0; index < pgCount; index++) {
+                if (!loadedThumbsArray[index]) {
+                    if (thumbnailPositions[index] + MAX_THUMBNAIL_WIDTH > startY && thumbnailPositions[index] < endY) {
+                        ClassHelper.addClass(thumbnailPanel.children[index].firstChild, "spinning");
+                    } else {
+                        ClassHelper.removeClass(thumbnailPanel.children[index].firstChild, "spinning");
+                    }
+                }
+            }
         };
 
         var loadVisibleThumbnails = function (scrollTop) {
@@ -926,14 +949,17 @@
         position: absolute;
     }
 
-    .visible .spinner {
+    .spinner {
         border: 6px solid #bbb;
         border-top: 6px solid #3c9fe1;
         border-radius: 50%;
         width: 30px;
         height: 30px;
-        animation: spin 1s linear infinite;
         margin: 0 auto;
+    }
+
+    .spinning {
+        animation: spin 1s linear infinite;
     }
 
     @keyframes spin {

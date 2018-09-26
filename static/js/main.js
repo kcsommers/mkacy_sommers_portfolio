@@ -31,8 +31,8 @@ const projects = [
 		images: ['../images/projects/starstacker.png', '../images/projects/starstacker1.png', '../images/projects/starstacker2.png', '../images/projects/starstacker3.png'],
 		technologies: ["HTML5", "CSS", "CSS Canvas", "JavaScript", "jQuery"],
 		links: {
-			github: 'https://github.com/kcsommers/project1-Columns',
-			live: 'https://kcsommers.github.io/project1-Columns/'
+			github: 'https://github.com/kcsommers/Star_Stacker/tree/master',
+			live: 'https://kcsommers.github.io/Star_Stacker/'
 		}
 	},
 	{
@@ -117,8 +117,8 @@ const createProjectSlide = function(i, slide) {
   let title = $(`<h1 class="project-title">${project.name}</h1>`); 
   let techs = $('<p class="project-techs"></p>'); 
   let desc = $(`<p class="project-description">${project.description}</p>`);
-  let githubLink = $(`<a class="project-github" href=${project.github}>Github</a>`);
-  let liveLink = $(`<a class="project-live" href=${project.live}>Live Site</a>`);
+  let githubLink = $(`<a class="project-github" target="_blank" href="${project.links.github}">Github</a>`);
+  let liveLink = $(`<a class="project-live" target="_blank" href="${project.links.live}">Live Site</a>`);
   let readMoreLink = $(`<a class="project-read-more" href="/project/${i}">Read More</a>`);
   let links = $(`<div class="project-links"></div>`);
   links.append(readMoreLink, liveLink, githubLink);
@@ -255,6 +255,19 @@ const handleNavClick = function(e) {
   }
 }
 
+let resumeWidth = 100;
+const handleZoom = function(e) {
+  const target = $(e.target);
+  const resume = $('#resume img');
+  if((target.is('#zoom-in') || target.is('#zoom-in i')) && resumeWidth < 200) {
+    resumeWidth += 25;
+  }
+  else if((target.is('#zoom-out') || target.is('#zoom-out i')) && resumeWidth > 50) {
+    resumeWidth -= 25;
+  }
+  resume.css({width: `${resumeWidth}%`})
+};
+
 $(document).ready(function() {
   addSlide(0, 'current-slide');
 
@@ -300,6 +313,8 @@ $(document).ready(function() {
     $('#about-photo img').attr('src', '../images/about_background.jpg');
     $('#about-photo img').attr('alt', 'M Kacy Sommers');
   });
+
+  $('.zoom').on('click', function(e){handleZoom(e)});
 
   setNavHeight(currentPage);
 });

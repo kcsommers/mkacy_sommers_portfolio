@@ -3,13 +3,16 @@
   #resume-wrapper {
     margin: 0 auto;
     padding: 8em 0 3em 17.5%;
+    overflow-x: scroll;
+
 
     #resume {
       width: 75%;
       margin: 0 auto;
-
       img {
         box-shadow: 2px 2px 20px #888;
+        transition: all 0.1s ease;
+        margin: 0 auto;
       }
     }
   }
@@ -28,6 +31,15 @@
 
     .resume-option {
       padding: 1em 0;
+
+      .zoom {
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      span:hover, a:hover {
+        color: #a9c5e8;
+      }
     }
 
     i {

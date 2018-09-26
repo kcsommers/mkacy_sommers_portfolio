@@ -442,6 +442,7 @@ img {
 #resume-section #resume-wrapper {
   margin: 0 auto;
   padding: 8em 0 3em 17.5%;
+  overflow-x: scroll;
 }
 #resume-section #resume-wrapper #resume {
   width: 75%;
@@ -449,6 +450,8 @@ img {
 }
 #resume-section #resume-wrapper #resume img {
   box-shadow: 2px 2px 20px #888;
+  transition: all 0.1s ease;
+  margin: 0 auto;
 }
 #resume-section #resume-options {
   display: flex;
@@ -464,6 +467,13 @@ img {
 }
 #resume-section #resume-options .resume-option {
   padding: 1em 0;
+}
+#resume-section #resume-options .resume-option .zoom {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#resume-section #resume-options .resume-option span:hover, #resume-section #resume-options .resume-option a:hover {
+  color: #a9c5e8;
 }
 #resume-section #resume-options i {
   font-size: 2em;
