@@ -22,7 +22,19 @@ const projects = [
 			github: 'https://github.com/kcsommers/goodmarket',
 			live: 'https://good-market.herokuapp.com/'
 		}
-	},
+  },
+  {
+    name: "Lo Wolf Music",
+    description: "Website for singer-songwriter Lo Wolf, with a store for purchasing digital tracks and hard copies, and an admin page for logging transactions, adding shows and keeping track of new subscribers.",
+    extraDescription: "Based on SEGA’s Columns, this two player front end game requires players to match colored pieces vertically, horizontally and diagonally as they drop down the screen at increasing speeds.\n \nColumns was (and still is) one of my favorite video games, and I was very excited to be able to create my own spin on it using JavaScript and CSS Canvas. The goal is to move and match the stacks around the grid, surviving as long as you can before the pieces reach the top (much like Tetris). More points are scored if the disappearing pieces allow the ones above to drop again and create new matches.\n \nThere is a lot of logic to this game, and a lot of potential bugs. In order to track them down, I often had to use Chrome's developer tools to watch the JavaScript execute one step at a time. As one of the first projects I'd ever developed, I certainly grew a lot as a developer from the challenges this game presented.",
+    image: "../images/projects/lowolf.png",
+    images: ['../images/projects/lowolf.png', '../images/projects/starstacker1.png', '../images/projects/starstacker2.png', '../images/projects/starstacker3.png'],
+    technologies: ["Vue.js", "Node", "Express", "Postgres"],
+		links: {
+			github: 'https://github.com/kcsommers/Star_Stacker/tree/master',
+			live: 'https://kcsommers.github.io/Star_Stacker/'
+		}
+  },
 	{
 		name: "Star Stacker",
 		description: "Two player front-end game, based on SEGA’s Columns, in which players match colored pieces vertically, horizontally and diagonally as they drop down the screen at increasing speeds.",

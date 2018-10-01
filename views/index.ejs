@@ -40,15 +40,17 @@
         <h3>Projects</h3>
       </div>
       <div id="projects-thumbnails">
-        <% projects.forEach(function(project, i) { %>
-          <div class="project-thumbnail-wrapper">
-            <% if (i === 0) { %>
-              <img class="thumbnail-active" data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
-            <% } else { %> 
-              <img data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
-            <% } %>
-          </div>
-        <% }); %>
+        <div id="projects-thumbnails-wrapper">
+          <% projects.forEach(function(project, i) { %>
+            <div class="project-thumbnail-wrapper">
+              <% if (i === 0) { %>
+                <img class="thumbnail-active" data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
+              <% } else { %> 
+                <img data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
+              <% } %>
+            </div>
+          <% }); %>
+        </div>
       </div>
       <div id="project-arrows">
         <span class="project-arrow" id="prev">

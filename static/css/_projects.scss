@@ -30,26 +30,32 @@
   }
 
   #projects-thumbnails {
-    display: flex;
     padding: 2em 3em;
-    flex-wrap: wrap;
+    #projects-thumbnails-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      .project-thumbnail-wrapper {
+        flex: 1;
+        min-width: 100px;
+      }
+  
+      img {
+        flex: 1;
+        opacity: 0.4;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+  
+      .thumbnail-active {
+        position: relative;
+        z-index: 100;
+        opacity: 1;
+        transform: scale(1.1);
+      }
 
-    .project-thumbnail-wrapper {
-      flex: 1;
-    }
-
-    img {
-      flex: 1;
-      opacity: 0.4;
-      cursor: pointer;
-      transition: all 0.5s ease;
-    }
-
-    .thumbnail-active {
-      position: relative;
-      z-index: 100;
-      opacity: 1;
-      transform: scale(1.1);
+      .thumbnail-hidden {
+        opacity: 0;
+      }
     }
   }
 
