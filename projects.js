@@ -51,8 +51,8 @@ const projects = [
 		name: "Musaic",
 		description: "MERN stack application which allows users to create spotify playlists based on the mood of an uploaded photograph.",
 		extraDescription: "Musaic is a MERN stack application which provides users a way to easily create a music playlist by simply taking a photograph.\n \nWhether a user is hiking through the woods, laying on the beach, working late or relaxing at home, Musaic will attempt to capture the mood of their setting, and utilize Spotify's wide range of song attributes to create a playlist to match. To acheive this, we developed a color to mood algorithm using the Hue, Saturation and Lightness values of the most dominant colors in the photograph. These values are converted into the attributes valence, energy, danceability and mode, which are then sent to the Spotify API.\n \nAs the app currently stands, in order to play the tracks the user's playlist is opened in Spotify. We hope to continue developing our application so that it supports the playing of audio without leaving the site.",
-		image: '../images/projects/moodsic.png',
-		images: ['../images/projects/moodsic.png', '../images/projects/moodsic1.png', '../images/projects/moodsic2.png'],
+		image: '../images/projects/musaic.png',
+		images: ['../images/projects/musaic.png', '../images/projects/musaic1.png', '../images/projects/musaic2.png'],
 		technologies: ["React.js", "CSS", "Node.js", "Express.js", "MongoDB"],
 		links: {
 			github: 'https://github.com/kcsommers/project3',
