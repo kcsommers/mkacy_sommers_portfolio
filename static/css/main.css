@@ -293,7 +293,7 @@ img {
 #projects-section .carousel {
   position: relative;
 }
-#projects-section .carousel .current-slide {
+#projects-section .carousel .current-slide, #projects-section .carousel .next-slide {
   position: absolute;
   top: 0;
   width: 100%;

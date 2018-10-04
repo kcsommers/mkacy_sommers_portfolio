@@ -62,7 +62,7 @@
   .carousel {
     position: relative;
 
-    .current-slide {
+    .current-slide, .next-slide {
       position: absolute;
       top: 0;
       width: 100%;
