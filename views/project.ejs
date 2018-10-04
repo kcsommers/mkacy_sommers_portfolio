@@ -7,7 +7,9 @@
             <span><%= tech %></span>
           <% }); %>
       </div>
-      <p><%= project.extraDescription %></p>
+      <% project.extraDescription.forEach((str) => { %>
+        <p><%= str %><br /><br /></p>
+      <% }); %>
     </section>
     <section id="project-images">
       <div id="project-images-wrapper">
