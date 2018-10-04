@@ -13,25 +13,17 @@ const setNavHeight = function(page) {
 
 const showContact = function() {
   $('#contact-form').css({right: 0});
-  $('.page-lid').css({display: 'block'});
-  $('nav').css({filter: 'blur(2px)'});
-  $('main').css({filter: 'blur(2px)'});
-  $('footer').css({filter: 'blur(2px)'});
+  $('.page-lid').css({zIndex: 1100, opacity: 1});
   $('body').addClass('no-scroll');
+  $('html').addClass('no-scroll');
 };
 
 const hideContact = function() {
   $('#contact-form').css({right: '-500px'});
-  $('.page-lid').css({display: 'none'});
-  $('nav').css({filter: 'none'});
-  $('main').css({filter: 'none'});
-  $('footer').css({filter: 'none'});
+  $('.page-lid').css({zIndex: -1100, opacity: 0});
   $('body').removeClass('no-scroll');
+  $('html').removeClass('no-scroll');
 }
-
-// ******************************************* 
-// project carousels
-// *******************************************
 
 const setElementHeights = function() {
   let projImgDisplay = $('.project-display-top');
@@ -97,16 +89,6 @@ $(document).ready(function() {
     setElementHeights();
   });
 
-  $('.project-thumbnail-wrapper img').on('mouseover', function(e) {
-    thumbnailActive.removeClass('thumbnail-active');
-    $(this).addClass('thumbnail-active');
-  });
-
-  $('.project-thumbnail-wrapper img').on('mouseout', function(e) {
-    $(this).removeClass('thumbnail-active');
-    thumbnailActive.addClass('thumbnail-active');
-  });
-
   $('.nav-link').on('click', handleNavClick);
 
   $('.contact-link').click(showContact);
@@ -126,6 +108,6 @@ $(document).ready(function() {
   });
 
   $('.zoom').on('click', function(e){handleZoom(e)});
-  
+
   setNavHeight(currentPage);
 });

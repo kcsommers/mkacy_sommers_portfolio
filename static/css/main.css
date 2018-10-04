@@ -76,10 +76,10 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 900;
-  display: none;
-  transition: all 0.8s ease;
-  background-color: rgba(0, 0, 0, 0);
+  z-index: -1100;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 #contact-form #contact-form-wrapper input[type=submit], #contact-section #contact-intro #contact-intro-wrapper button, #projects-section .projects-flex .project-description-wrapper .project-links .project-github, #projects-section .projects-flex .project-description-wrapper .project-links .project-live, #landing-section #landing-intro button {
@@ -234,7 +234,7 @@ img {
 }
 #about-section #about-flex #bio p #joni-span, #about-section #about-flex #bio h2 #joni-span {
   color: #e2c4a5;
-  cursor: pointer;
+  cursor: default;
 }
 
 #projects-section {
@@ -411,7 +411,7 @@ img {
   width: 500px;
   overflow: scroll;
   transition: all 0.5s ease;
-  z-index: 1000;
+  z-index: 1200;
 }
 #contact-form #contact-info h4 {
   display: flex;

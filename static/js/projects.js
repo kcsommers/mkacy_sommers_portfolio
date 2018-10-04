@@ -198,4 +198,13 @@ $(document).ready(function() {
   addSlide(0, 'current-slide');
   $('.project-thumbnail-wrapper img').on('click', handleThumbnailClick);
   $('.project-arrow').on('click', handleArrowClick);
+  $('.project-thumbnail-wrapper img').on('mouseover', function(e) {
+    thumbnailActive.removeClass('thumbnail-active');
+    $(this).addClass('thumbnail-active');
+  });
+
+  $('.project-thumbnail-wrapper img').on('mouseout', function(e) {
+    $(this).removeClass('thumbnail-active');
+    thumbnailActive.addClass('thumbnail-active');
+  });
 });
