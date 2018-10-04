@@ -44,9 +44,9 @@
           <% projects.forEach(function(project, i) { %>
             <div class="project-thumbnail-wrapper">
               <% if (i === 0) { %>
-                <img class="thumbnail-active" data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
+                <img class="thumbnail-active" data-index="<%= i %>" src="<%= project.imagesSm[0] %>" alt="<%= project.name %>" />
               <% } else { %> 
-                <img data-index="<%= i %>" src="<%= project.image %>" alt="<%= project.name %>" />
+                <img data-index="<%= i %>" src="<%= project.imagesSm[0] %>" alt="<%= project.name %>" />
               <% } %>
             </div>
           <% }); %>
