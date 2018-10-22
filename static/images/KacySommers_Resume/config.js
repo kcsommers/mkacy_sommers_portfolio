@@ -1,1 +1,1 @@
-IDRViewer.config = {"pagecount":1,"title":"KacySommers_Resume_WDI  2","author":"","fileName":"KacySommers_Resume.pdf","bounds":[[935,1210]],"bookmarks":[],"thumbnailType":"jpg","pageType":"svg","pageLabels":[]};
+IDRViewer.config = {"pagecount":1,"title":"KacySommers_Resume","author":"","fileName":"KacySommers_Resume.pdf","bounds":[[935,1210]],"bookmarks":[],"thumbnailType":"jpg","pageType":"svg","pageLabels":[]};
