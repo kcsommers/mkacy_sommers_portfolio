@@ -1,11 +1,11 @@
 #resume-section {
   background: linear-gradient(to bottom left,  #fff, #dedfe1);
+  min-height: 100vh;
+
   #resume-wrapper {
     margin: 0 auto;
     padding: 8em 0 3em 17.5%;
     overflow-x: scroll;
-    min-height: 100vh;
-
 
     #resume {
       width: 75%;
